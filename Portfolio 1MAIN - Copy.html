@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const container = document.getElementById("mondrian-container");
+
+  function changeColors() {
+    const colors = ["red", "blue", "yellow", "white"];
+    const boxes = document.querySelectorAll("#mondrian-container div:not(.black)");
+
+    boxes.forEach(box => {
+      const randomColorIndex = Math.floor(Math.random() * colors.length);
+      box.className = colors[randomColorIndex];
+    });
+  }
+
+  setInterval(changeColors, 1000);
+
+  const marquee = document.querySelector(".snake-marquee .text");
+
+  function changeMarqueeColor() {
+    const colors = ["red", "blue", "yellow"];
+    const randomColorIndex = Math.floor(Math.random() * colors.length);
+    marquee.style.color = colors[randomColorIndex];
+  }
+
+  setInterval(changeMarqueeColor, 1000);
+
+  
+  function moveMarquee() {
+    marqueePos--;
+    if (marqueePos <= -marqueeContainer.offsetWidth / 2) {
+      marqueePos = marqueeContainer.offsetWidth / 2;
+    }
+    marquee.style.transform = `translateX(${marqueePos}px)`;
+  }
+
+  setInterval(moveMarquee, 50);
+});
+</script>
+
+
+  <meta charset="UTF-8">
+  <title>Mondrian Painting</title>
+  <link rel="stylesheet" href="mondrian.css">
+</head>
+	<style>
+body {
+    -webkit-text-size-adjust: 100%;
+    --color-203c2ae: #000;
+    --color-21d1ff8: #fff;
+    --color-2069428: #666;
+    --color-746d8885: #e6e6e6;
+    --color-nd2a2d19: #fafafa;
+    --color-21c2f7a: #ddd;
+    --color-207fce5: #999;
+    --color-20748b16: #3898ec;
+    --color-n4bc568a: #ffdede;
+    --color-n665b9284: rgba(0, 0, 0, .8);
+    --color-n65194d1d: rgba(0, 0, 0, .25);
+    --color-n58536e15: #f5f5f5;
+    --color-n7726e062: #dad5d0;
+    --color-n5770320c: #101820;
+    --color-n6e88588e: #dfdfdf;
+    font-family: Keroinepro douxextreme,Times New Roman,sans-serif;
+    color: var(--color-203c2ae);
+    font-size: 14px;
+    line-height: 20px;
+    box-sizing: border-box;
+    overflow: scroll;
+    width: auto;
+    height: auto;
+    margin-top: 44px;
+    margin-right: 0;
+    margin-bottom: 44px;
+    flex: 1;
+    border-bottom: 1px solid var(--color-203c2ae);
+    border-left: 1px solid var(--color-203c2ae);
+	 .main-navigation 
+            color: #03f;
+            font-family: Atlas Grotesk Web, Helvetica, Arial, sans-serif;
+            font-size: 1.2rem;
+            line-height: 1.2em;
+            letter-spacing: -.042rem;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            outline: none;
+            list-style: none;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            z-index: 1;
+            position: fixed;
+            width: 100%;
+            background-color: #ddd;
+            transition: all .45s;
+            padding-left: 40rem;
+        }
+}
+</style>
+<body>
+  <div class="intro-text">
+     Hi, this website looks like shit because I've just started to code. However, I made this from scratch which is either very impressive or very unimpressive. On the shitty flipside, running the tech equivalent of a 90s website → low carbonprint. I can also host whatever I want on it like this banned <a href="mp3.html" class="diablo-link">
+  MP3.</a> 
+	  <nav class="main-navigation open">
+        <ol>
+            <li>
+                <a href="/mission">
+                    <p class="index title-m">I</p>
+                    <h2 class="title title-m uc">Mission</h2>
+                    <p class="description title-xs">
+                        <span>A speculative experiment about the future of Internet and of our society</span>
+                    </p>
+                    <p class="status text-s">closed</p>
+                    <p class="date text-s">11.11.2018</p>
+                </a>
+            </li>
+            <li>
+                <a href="/questions">
+                    <p class="index title-m">II</p>
+                    <h2 class="title title-m uc">Questions</h2>
+                    <p class="description title-xs">
+                        <span>Every week the Embassy will propose two open questions to the people of Internet</span>
+                    </p>
+                    <p class="status text-s">closed</p>
+                    <p class="date text-s">11.11.2018</p>
+                </a>
+            </li>
+            <li>
+                <a href="/open-call">
+                    <p class="index title-m">III</p>
+                    <h2 class="title title-m uc">Open call</h2>
+                    <p class="description title-xs">
+                        <span>The Embassy of Internet is calling for ambassadors</span>
+                    </p>
+                    <p class="status text-s">open</p>
+                    <p class="date text-s">24.03.2019</p>
+                </a>
+            </li>
+            <li>
+                <a href="/ambassadors">
+                    <p class="index title-m">IV</p>
+                    <h2 class="title title-m uc">Ambassadors</h2>
+                    <p class="description title-xs">
+                        <span>Last Ambassador: Lara Chapman</span>
+                    </p>
+                    <p class="status text-s">open</p>
+                    <p class="date text-s">29.04.2019</p>
+                </a>
+            </li>
+        </ol>
+    </nav>
+  </div>
+	
+	
+  <div class="wrapper">
+    <div class="links left">
+      <!-- Add your left-side hyperlinks here -->
+      <a href="projekt2.html">Link1</a>
+      <a href="Calles.html">Calle's Kaviar</a>
+      <a href="#">Link3</a>
+    </div>
+
+    <div id="mondrian-container">
+    
+      <div id="main-row">
+        <div id="main-left-column" class="right">
+          <div id="top-box" class="red"></div>
+          <div id="divider-1" class="black	"></div>
+          <div id="middle-box" class="white"></div>
+          <div id="divider-2" class="black"></div>
+          <div id="bottom-box" class="blue"></div>
+        </div>
+        <div id="divider-3" class="black right"></div>
+        <div id="main-right-column" class="right">
+          <div id="top-row">
+            <div class="small-box yellow right"></div>
+            <div id="divider-5" class="black right"></div>
+            <div class="small-box white right"></div>
+          </div>
+          <div id="divider-4" class="black"></div>
+          <div id="bottom-row">
+            <div class="small-box white right"></div>
+            <div id="divider-6" class="black right"></div>
+            <div class="small-box blue right"></div>
+          </div>
+        </div>
+      </div>
+    </div> 	 
+
+    <div class="links right">
+      <!-- Add your right-side hyperlinks here -->
+      <a href="#">Save Our Friends</a>
+      <a href="#">Link2</a>
+      <a href="#">Link3</a>
+</div>
+
+
+    </div>
+  </div>
+</body>
+</html>
