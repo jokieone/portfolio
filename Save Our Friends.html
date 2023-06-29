@@ -5,16 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Text-Based Website</title>
   <style>
-	     .image-container {
+	    .main-content {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
+      align-items: flex-start;
+      margin: 20px 0;
     }
 
-    .image-container img {
-      width: 49%; /* Adjust this value as needed */
-      height: auto;
+    .wrapper {
+      max-width: 50%;
     }
-	  
+
+    iframe {
+      max-width: 45%;
+    }
+
+    .diablo-link {
+      color: red; /* Adjust the color value according to your needs */
+    }
     html {
       font-size: 24px;
     }
@@ -98,18 +106,7 @@
   text-align: center;
   padding: 10px 0;
 }
- html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-      }
-      iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+
   </style>
 	<style>
     .diablo-link {
@@ -117,8 +114,27 @@
     }
   </style>
 </head>
-<body>	
-    <iframe src="https://www.youtube.com/embed/NwFiaifFhvU?autoplay=1&controls=0&showinfo=0&autohide=1&loop=1" frameborder="0" allowfullscreen></iframe>
+<body>
+	<div class="main-content">
+    <div class="wrapper">
+      <h1 id="main-side">PETA - SAVE OUR FRIENDS.</h1>
+      <div class="flex-container">
+        <div class="main__item">
+          <h2 class="intro-text">Background:</h2>
+          <p class="right-text">A quarter of inner city children have never seen a cow, a sheep, or come face to face with a chicken.</p>
+        </div>
+        <div class="main__item">
+          <h2 class="intro-text">Unexpected Insight:</h2>
+          <p class="right-text">But if you google chicken, scallops or salmon the animals are nowhere to be found. Sadly, only food shows up.</p>
+        </div>
+        <div class="main__item">
+          <h2 class="intro-text">Solution:</h2>
+          <p class="right-text">Game search rankings from dead to living animals by letting people
+save animals... to pinterest boards!</p>
+        </div>
+      </div>
+    </div>
 
-
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/NwFiaifFhvU?" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
 	  </body>
