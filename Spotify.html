@@ -5,16 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Text-Based Website</title>
   <style>
-	     .image-container {
+	    .main-content {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
+      align-items: flex-start;
+      margin: 20px 0;
     }
 
-    .image-container img {
-      width: 49%; /* Adjust this value as needed */
-      height: auto;
+    .wrapper {
+      max-width: 50%;
     }
-	  
+
+    iframe {
+      max-width: 45%;
+    }
+
+    .diablo-link {
+      color: red; /* Adjust the color value according to your needs */
+    }
     html {
       font-size: 24px;
     }
@@ -107,6 +115,34 @@
   </style>
 </head>
 <body>
-	<iframe width="560" height="315" src="https://www.youtube.com/embed/Fi_V9lzc5BE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<div class="main-content">
+    <div class="wrapper">
+      <h1 id="main-side">Spotify Dream Mode.</h1>
+      <div class="flex-container">
+        <div class="main__item">
+          <h2 class="intro-text">Brief:</h2>
+          <p class="right-text">Market Spotify's audiobooks to a young adults and teenagers.</p>
+        </div>
+        <div class="main__item">
+          <h2 class="intro-text">Background:</h2>
+          <p class="right-text">90% of young adults use an electronic device during the hour before bed.</p>
+        </div>
+        <div class="main__item">
+          <h2 class="intro-text">Problem:</h2>
+          <p class="right-text">While falling asleep to an audiobook seems like an ideal solution, it poses an issue. Books require continuity, so if listeners fall asleep while the book is playing, they will have to backtrack when they next listen.</p>
+        </div>
+        <div class="main__item">
+			 <div class="main__item">
+          <h2 class="intro-text">Unexpected Insight:</h2>
+          <p class="right-text">Fitness and sleep apps use the accelerometer in smartphones to pinpoint the moment users fall asleep.
+</p>
+        </div>
+          <h2 class="intro-text">Solution</h2>
+          <p class="right-text">Create an audiobook that pauses when you sleep. </p>
+        </div>
+      </div>
+    </div>
 
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Fi_V9lzc5BE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
 	  </body>
