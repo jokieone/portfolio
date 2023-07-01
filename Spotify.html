@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Text-Based Website</title>
   <style>
+	     .video-wrapper {
+      position: relative;
+      width: 560px; /* Adjust the width according to your video's dimensions */
+      height: 315px; /* Adjust the height according to your video's dimensions */
+      margin-bottom: 20px;
+    }
+
+    .video-wrapper iframe,
+    .video-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+	  
+    .gallery-wrapper {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .gallery-item {
+      width: calc(50% - 10px);
+      margin-bottom: 20px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+    }
 	    .main-content {
       display: flex;
       justify-content: space-around;
@@ -26,6 +54,25 @@
     html {
       font-size: 24px;
     }
+	   .main-content {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      margin: 20px 0;
+    }
+
+    .wrapper {
+      max-width: 50%;
+    }
+
+    iframe {
+      max-width: 45%;
+    }
+
+    .diablo-link {
+      color: red; /* Adjust the color value according to your needs */
+    }
+
 
     body {
       font-family: Arial, sans-serif;
@@ -106,6 +153,8 @@
   text-align: center;
   padding: 10px 0;
 }
+	  
+	  }
 
   </style>
 	<style>
@@ -134,15 +183,15 @@
         <div class="main__item">
 			 <div class="main__item">
           <h2 class="intro-text">Unexpected Insight:</h2>
-          <p class="right-text">Fitness and sleep apps use the accelerometer in smartphones to pinpoint the moment users fall asleep.
-</p>
+           <p class="right-text">Sleep apps already use the accelerometer in our phones to pinpoint the moment you we asleep.
         </div>
-          <h2 class="intro-text">Solution</h2>
-          <p class="right-text">Create an audiobook that pauses when you sleep. </p>
+         
         </div>
       </div>
     </div>
 
     <iframe width="560" height="315" src="https://www.youtube.com/embed/Fi_V9lzc5BE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		
   </div>
-	  </body>
+	
+    
