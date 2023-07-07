@@ -1,200 +1,231 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Text-Based Website</title>
-  <style>
-	     .video-wrapper {
-      position: relative;
-      width: 560px; /* Adjust the width according to your video's dimensions */
-      height: 315px; /* Adjust the height according to your video's dimensions */
-      margin-bottom: 20px;
-    }
-
-    .video-wrapper iframe,
-    .video-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-	  
-    .gallery-wrapper {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-
-    .gallery-item {
-      width: calc(50% - 10px);
-      margin-bottom: 20px;
-    }
-
-    .gallery-item img {
-      width: 100%;
-    }
-	    .main-content {
-      display: flex;
-      justify-content: space-around;
-      align-items: flex-start;
-      margin: 20px 0;
-    }
-
-    .wrapper {
-      max-width: 50%;
-    }
-
-    iframe {
-      max-width: 45%;
-    }
-
-    .diablo-link {
-      color: red; /* Adjust the color value according to your needs */
-    }
-    html {
-      font-size: 24px;
-    }
-	   .main-content {
-      display: flex;
-      justify-content: space-around;
-      align-items: flex-start;
-      margin: 20px 0;
-    }
-
-    .wrapper {
-      max-width: 50%;
-    }
-
-    iframe {
-      max-width: 45%;
-    }
-
-    .diablo-link {
-      color: red; /* Adjust the color value according to your needs */
-    }
-
-
-    body {
-      font-family: Arial, sans-serif;
-      font-size: 1rem;
-      line-height: 1.5;
-      color: #222;
-      background-color: #f1f1f1;
-      margin: 0;
-    }
-
-    a {
-      color: #0000ee;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 0;
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      margin-top: 0;
-      margin-bottom: 1rem;
-    }
-
-    ul, ol {
-      padding-left: 2rem;
-    }
-
-    ul {
-      list-style-type: disc;
-    }
-
-    ol {
-      list-style-type: decimal;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    .container {
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-
-    .collection-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .collection-item {
-      margin: 10px;
-      width: 200px;
-      text-align: center;
-    }
-
-    .item-image img {
-      max-width: 200px;
-      max-height: 200px;
-    }
-	  .floating-banner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  text-align: center;
-  padding: 10px 0;
-}
-	  
-	  }
-
-  </style>
-	<style>
-    .diablo-link {
-      color: red; /* Adjust the color value according to your needs */
-    }
-  </style>
-</head>
-<body>
-	<img src=Bilder/spotooh1.png>
-	<div class="main-content">
-    <div class="wrapper">
-      <h1 id="main-side">Spotify Dream Mode.</h1>
-      <div class="flex-container">
-        <div class="main__item">
-          <h2 class="intro-text">Brief:</h2>
-          <p class="right-text">Market Spotify's audiobooks to a young adults and teenagers.</p>
-        </div>
-        <div class="main__item">
-          <h2 class="intro-text">Background:</h2>
-          <p class="right-text">90% of young adults use an electronic device during the hour before bed.</p>
-        </div>
-        <div class="main__item">
-          <h2 class="intro-text">Problem:</h2>
-          <p class="right-text">While falling asleep to an audiobook seems like an ideal solution, it poses an issue. Books require continuity, so if listeners fall asleep while the book is playing, they will have to backtrack when they next listen.</p>
-        </div>
-        <div class="main__item">
-			 <div class="main__item">
-          <h2 class="intro-text">Unexpected Insight:</h2>
-           <p class="right-text">Sleep apps already use the accelerometer in our phones to pinpoint the moment you we asleep.
-        </div>
-         
-        </div>
-      </div>
-    </div>
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/Fi_V9lzc5BE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-		
-  </div>
-	<img src=Bilder/spotooh2.png>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Dream Mode</title>
+    <style>
 		
 	
-    
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .main-content img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+       .video-wrapper {
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio for the video */
+        position: relative;
+        margin-top: 50px; /* Adjust the margin to create space below the previous section */
+    }
+
+
+         
+
+   .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+        .wrapper {
+            max-width: 90%;
+            margin: 0 auto;
+			  display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+			 margin: 0 200px;
+        }
+		 .flex-parent {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .flex-container, .flex-img {
+            flex: 1;  /* Make both elements take up equal width */
+            padding: 0 10px;  /* Add some space around each element */
+        }
+
+        .flex-img img {
+            width: 100%;  /* Make the image take up the full width of its container */
+            object-fit: cover;  /* Crop the image to cover the available space */
+            object-position: center;  /* Center the image within its container */
+        }
+
+        iframe {
+            max-width: 100%;
+        }
+
+      
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #222;
+            background-color: #f1f1f1;
+            margin: 0;
+        }
+		body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+       
+    }
+
+
+        a {
+            color: #0000ee;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            padding-left: 2rem;
+        }
+
+        ul {
+            list-style-type: disc;
+        }
+
+        ol {
+            list-style-type: decimal;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .collection-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+```html
+        .collection-item {
+            margin: 10px;
+            width: 200px;
+            text-align: center;
+        }
+
+        .item-image img {
+            max-width: 200px;
+            max-height: 200px;
+        }
+
+        .floating-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+    <style>
+        .diablo-link {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+	<br>
+	
+	<div class="wrapper">
+ 
+    <div class="flex-container">
+        <div class="main__item">
+            <h2 class="intro-text" id="brief">Brief:</h2>
+            <p class="right-text">Market audiobooks to young adults and teenagers.</p>
+        </div>
+        <div class="main__item">
+            <h2 class="intro-text" id="background">Background:</h2>
+            <p class="right-text"> 96% of young adults use a smart device in their last hour awake, and 70 % of them use audio as a sleep aid. And while falling asleep to an audiobook seems ideal it actually sucks because you never know when you crash.</p>
+        </div>
+     
+        <div class="main__item">
+            <h2 class="intro-text" id="unexpected_insight">Unexpected Insight:</h2>
+            <p class="right-text">Sleep trackers can use the smartphone accelerometer to pinpoint the moment you sleep.</p>
+        </div>
+        <div class="main__item">
+            <h2 class="intro-text" id="solution">Solution:</h2>
+            <p class="right-text">Audiobooks that pause when you sleep.</p>
+        </div>
+    </div>
+</div>
+	
+<div class="main-content" id="image-section">
+	 <img src="Filmer/sovande.gif">
+   
+</div>
+	
+	
+	
+	<div class="main__item" id="case">
+    <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/Fi_V9lzc5BE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+
+
+
+
+
+<div class="main__item" id="Prints">
+    <h2 class="intro-text"></h2>
+    <a href="#image-section">
+        <img src="Bilder/spotooh1.png">
+       
+    </a>
+	
+	<img src="Bilder/spotooh2.png"
+		 
+</div>
+		 <br>
+	 <h1 class="intro-text" id="Team">Art Director: Christopher Runström. Filip Xu. Copywriter: Adam Lundgren. Elias Karlsson. </h2>
+	
+		 
+		
+
+
+
+</body>
+</html>
