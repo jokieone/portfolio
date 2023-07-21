@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Song By Birth Year</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+	 <h2>
+Just like people, songs are born every day; this song is from the day you were born.</h2>
+    <form onsubmit="event.preventDefault(); fetchSongAndVideo();">
+        <label for="birthdate">Birthdate:</label>
+        <input type="date" id="birthdate" name="birthdate" required>
+        <button type="submit">Get Song</button>
+    </form>
+
+    <h2 id="songTitle"></h2>
+
+    <h2>Your Birthday Banger:</h2>
+    <iframe id="youtubeEmbed" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+
+    <script>
+    const DISCOGS_API_URL = "https://api.discogs.com/database/search";
+    const YOUTUBE_SEARCH_URL = "https://www.googleapis.com/youtube/v3/search";
+
+    const DISCOGS_HEADERS = {
+        "User-Agent": "YourAppName/1.0",
+        "Authorization": "Discogs token=dOqLEzunKNWwkBaWDdxTyzjIoTrLfczHQjMZCsZj"
+    };
+
+    const YOUTUBE_API_KEY = 'AIzaSyD_v4RN5PJgjeT2YeH1XCmHq-GMclAuSlE';
+
+    async function getRandomSongFromYear(year) {
+        const params = new URLSearchParams({
+            year: year,
+            type: "release",
+            page: 1,
+            per_page: 100
+        });
+
+        const response = await fetch(`${DISCOGS_API_URL}?${params}`, { headers: DISCOGS_HEADERS });
+        const data = await response.json();
+
+        if (!data.results || data.results.length === 0) {
+            return null;
+        }
+
+        const randomSong = data.results[Math.floor(Math.random() * data.results.length)];
+        return randomSong.title;
+    }
+
+    async function getYoutubeVideo(songTitle) {
+        const params = new URLSearchParams({
+            q: songTitle,
+            part: 'snippet',
+            maxResults: 1,
+            key: YOUTUBE_API_KEY,
+            type: 'video'
+        });
+
+        const response = await fetch(`${YOUTUBE_SEARCH_URL}?${params}`);
+        const data = await response.json();
+
+        if (!data.items || data.items.length === 0) {
+            return null;
+        }
+
+        return data.items[0].id.videoId;
+    }
+
+    async function fetchSongAndVideo() {
+        const birthdateElement = document.getElementById("birthdate");
+        const birthdate = new Date(birthdateElement.value);
+        const year = birthdate.getFullYear();
+
+        const song = await getRandomSongFromYear(year);
+        if (song) {
+            const videoId = await getYoutubeVideo(song);
+            if (videoId) {
+                document.getElementById("youtubeEmbed").src = `https://www.youtube.com/embed/${videoId}`;
+              
+            }
+        }
+    }
+    </script>
+</body>
+</html>
