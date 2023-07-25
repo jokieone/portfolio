@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird Sound Quiz</title>
+    <style>
+        /* Basic styling for better visualization */
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .option { margin: 10px 0; cursor: pointer; }
+        .feedback { display: none; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Bird Sound Quiz</h1>
+    <p>Listen to the bird sound:</p>
+    <audio id="birdSound" controls>
+        <source src="path_to_bird_sound.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <p>What is the bird saying?</p>
+    <div class="option" onclick="checkAnswer('option1')">
+        <input type="radio" name="birdGuess" value="option1"> Chirp chirp, I'm happy!
+    </div>
+    <div class="option" onclick="checkAnswer('option2')">
+        <input type="radio" name="birdGuess" value="option2"> Tweet tweet, I'm hungry!
+    </div>
+    <!-- Add more options as needed -->
+
+    <div class="feedback" id="feedbackCorrect">
+        <p>Correct! Well done.</p>
+    </div>
+    <div class="feedback" id="feedbackWrong">
+        <p>Incorrect. Here's how that sound would be:</p>
+        <audio id="wrongSound" controls>
+            <source src="path_to_wrong_answer_sound.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <script>
+        function checkAnswer(option) {
+            // Basic logic to check answer. This can be expanded as needed.
+            if (option === 'option1') {
+                document.getElementById('feedbackCorrect').style.display = 'block';
+                document.getElementById('feedbackWrong').style.display = 'none';
+            } else {
+                document.getElementById('feedbackWrong').style.display = 'block';
+                document.getElementById('feedbackCorrect').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
