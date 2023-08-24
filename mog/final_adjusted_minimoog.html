@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimoog Synthesizer Emulation</title>
+    <link rel="stylesheet" href="path_to_css.css"> <!-- You'll need to link to the CSS here -->
+    <script>
+        // Initialize audio context
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        // Create oscillator
+        const oscillator = audioContext.createOscillator();
+        oscillator.type = 'sawtooth'; // default waveform
+        oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // default frequency (A4)
+        oscillator.start();
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            const rangeControl = document.getElementById('dco-range');
+            const waveformControl = document.getElementById('dco-waveform');
+
+            rangeControl.addEventListener('input', function() {
+                // Convert the slider value to a frequency (this is a simple linear conversion for demonstration purposes)
+                const frequency = rangeControl.value * 10; 
+                oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+            });
+
+            waveformControl.addEventListener('change', function() {
+                oscillator.type = waveformControl.value;
+            });
+        });
+    </script>
+</head>
+<body>
+... (same HTML as before) ...
+<button onclick="oscillator.connect(audioContext.destination)">Start Sound</button>
+<button onclick="oscillator.disconnect(audioContext.destination)">Stop Sound</button>
+</body>
+</html>

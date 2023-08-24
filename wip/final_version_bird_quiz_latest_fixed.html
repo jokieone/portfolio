@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird Sound Quiz</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .option { margin: 10px 0; cursor: pointer; }
+        .feedback { display: none; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Bird Sound Quiz</h1>
+   
+    <p>What is the bird saying?</p>
+
+    <audio id="birdSound" controls>
+        <source src="Bird Sounds/Seagull I'm here.m4a" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+<p>What is the bird saying?</p>
+    <div class="option" onclick="setFilename('option1', 'Seagull I'm here.m4a')">
+        <input type="radio" name="birdGuess" id="option1" value="option1"> <label for="option1">This spot, right here, it's mine. So, keep your feathers off!</label>
+    </div>
+    
+    <div class="option" onclick="setFilename('option2', 'Sea Gull Low Intensity Alarm.m4a')">
+        <input type="radio" name="birdGuess" id="option2" value="option2"> <label for="option2">A seagull, looking around and whispering, 'Something's not right, folks.'</label>
+    </div>
+    
+    <div class="option" onclick="setFilename('option3', 'Seagull Mew.m4a')">
+        <input type="radio" name="birdGuess" id="option3" value="option3"> <label for="option3">Come here, kiddo,</label>
+    </div>
+    
+    <div class="option" onclick="setFilename('option4', 'Seagull Yelp.m4a')">
+        <input type="radio" name="birdGuess" id="option4" value="option4"> <label for="option4">Hold it right there, you're getting too close for comfort.</label>
+    </div>
+    
+    
+<button id="submitAnswer" onclick="evaluateAnswer()">Submit Answer</button>
+
+<audio id="incorrectSoundPlayer" controls style="display:none;"></audio>
+<div class="feedback" id="feedbackCorrect">
+        <p>Correct! Well done.</p>
+    </div>
+    <div class="feedback" id="feedbackWrong">
+        <p id="wrongFeedbackText"></p>
+    </div>
+
+    <script>
+function setFilename(filename) {
+    selectedFilename = filename;
+}
+
+        
+
+function checkAnswer(option, filename) {
+    if (filename === 'Seagull I\'m here.m4a') {
+        document.getElementById('feedbackCorrect').style.display = 'block';
+        document.getElementById('feedbackWrong').style.display = 'none';
+    } else {
+        let audioPlayer = document.getElementById('incorrectSoundPlayer');
+        let wrongOptionFilename;
+        let description;
+        switch (filename) {
+            case 'Sea Gull Low Intensity Alarm.m4a':
+                wrongOptionFilename = 'Sea Gull Low Intensity Alarm.m4a';
+                description = "Not quite! The sound you identified is more of a seagull saying, 'Something's not right, folks.' It's their low intensity alarm, a subdued warning to other birds about potential threats. Think of it as their whispered way of saying, 'Heads up!'";
+                break;
+            case 'Seagull Mew.m4a':
+                wrongOptionFilename = 'Seagull Mew.m4a';
+                description = "Close, but no cigar! The call you heard is more like a seagull beckoning, 'Come here, kiddo.' It's the mew call, used for summoning chicks or warning off intruders. And fun fact: it's often accompanied by a forward-walking motion and an arched neck, sounding eerily similar to a cat’s meow.";
+                break;
+            case 'Seagull Yelp.m4a':
+                wrongOptionFilename = 'Seagull Yelp.m4a';
+                description = "A good guess, but that sound is more like a seagull exclaiming, 'Hold it right there, you're getting too close for comfort.' It’s the yelp call, a high-pitched alarm given when a predator's uncomfortably close. You might notice the gull's head and neck jutting forward slightly when they sound off.";
+                break;
+        }
+        audioPlayer.src = 'Bird Sounds/' + wrongOptionFilename;
+        audioPlayer.play();
+        document.getElementById('feedbackWrong').style.display = 'block';
+        document.getElementById('feedbackCorrect').style.display = 'none';
+        document.getElementById('wrongFeedbackText').innerHTML = description;
+    }
+}
+}
+    if (filename === 'Seagull I\'m here.m4a') {
+        document.getElementById('feedbackCorrect').style.display = 'block';
+        document.getElementById('feedbackWrong').style.display = 'none';
+    } else {
+        let audioPlayer = document.getElementById('incorrectSoundPlayer');
+        let wrongOptionFilename;
+        let description;
+        switch (filename) {
+            case 'Sea Gull Low Intensity Alarm.m4a':
+                wrongOptionFilename = 'Sea Gull Low Intensity Alarm.m4a';
+                description = "Not quite! The sound you identified is more of a seagull saying, 'Something's not right, folks.' It's their low intensity alarm, a subdued warning to other birds about potential threats. Think of it as their whispered way of saying, 'Heads up!'";
+                break;
+            case 'Seagull Mew.m4a':
+                wrongOptionFilename = 'Seagull Mew.m4a';
+                description = "Close, but no cigar! The call you heard is more like a seagull beckoning, 'Come here, kiddo.' It's the mew call, used for summoning chicks or warning off intruders. And fun fact: it's often accompanied by a forward-walking motion and an arched neck, sounding eerily similar to a cat’s meow.";
+                break;
+            case 'Seagull Yelp.m4a':
+                wrongOptionFilename = 'Seagull Yelp.m4a';
+                description = "A good guess, but that sound is more like a seagull exclaiming, 'Hold it right there, you're getting too close for comfort.' It’s the yelp call, a high-pitched alarm given when a predator's uncomfortably close. You might notice the gull's head and neck jutting forward slightly when they sound off.";
+                break;
+        }
+        audioPlayer.src = 'Bird Sounds/' + wrongOptionFilename;
+        audioPlayer.play();
+        document.getElementById('feedbackWrong').style.display = 'block';
+        document.getElementById('feedbackCorrect').style.display = 'none';
+        document.getElementById('wrongFeedbackText').innerHTML = description;
+    }
+}
+
+    
+let selectedFilename;
+
+
+
+function evaluateAnswer() {
+    let selectedOption = document.querySelector('input[name="birdGuess"]:checked');
+    if (selectedOption) {
+        checkAnswer(selectedOption.id, selectedFilename);
+    }
+}
+
+    let selectedOption = document.querySelector('input[name="birdGuess"]:checked');
+    if (selectedOption) {
+        checkAnswer(selectedOption.id, selectedFilename);
+    } else {
+        alert("Please select an option before submitting.");
+    }
+}
+</script>
+</body>
+</html>

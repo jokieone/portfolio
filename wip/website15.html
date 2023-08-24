@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Article from 15 Years Ago</title>
+    <script>
+        async function fetchRandomArticle() {
+            const today = new Date();
+            const pastDate = new Date(today);
+            pastDate.setFullYear(today.getFullYear() - 15);
+
+            const formattedDate = `${pastDate.getFullYear()}${String(pastDate.getMonth() + 1).padStart(2, '0')}${String(pastDate.getDate()).padStart(2, '0')}`;
+            const apiUrl = `http://archive.org/wayback/available?url=nytimes.com&timestamp=${formattedDate}`;
+
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                if (data.archived_snapshots && data.archived_snapshots.closest && data.archived_snapshots.closest.available) {
+                    const archiveUrl = data.archived_snapshots.closest.url;
+                    document.getElementById('articleFrame').src = archiveUrl;
+                } else {
+                    alert("No articles found for this date.");
+                }
+            } catch (error) {
+                alert("Error fetching the article. Please try again.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="fetchRandomArticle()">Show me a random article from 15 years ago!</button>
+    <iframe id="articleFrame" width="100%" height="600px" title="Random Article"></iframe>
+</body>
+</html>

@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird Sound Quiz</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .option { margin: 10px 0; cursor: pointer; }
+        .feedback { display: none; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Bird Sound Quiz</h1>
+    <p>Listen to the bird sound:</p>
+    <audio id="birdSound" controls>
+        <source src="Bird Sounds/Seagull I'm here.m4a" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <p>What is the bird saying?</p>
+
+    <div class="option" onclick="checkAnswer('option1')">
+        <input type="radio" name="birdGuess" value="option1"> It's a declaration call saying I'm here and this is mine whether it's in the nest or simply at a feeding site.
+    </div>
+    
+    <div class="option" onclick="checkAnswer('option2')">
+        <input type="radio" name="birdGuess" value="option2"> A "Seagull Low intensity alarm" refers to a quieter, subdued warning sound that seagulls make to alert other birds of potential threats, distinct from their louder and more aggressive calls. It's akin to a seagull's version of a whispered warning.
+    </div>
+    
+    <div class="option" onclick="checkAnswer('option3')">
+        <input type="radio" name="birdGuess" value="option3"> Mew is used to call chicks to the parent. It is also used with the choke call as a warning to intruders to get out of the territory. Often, but not always, mew occurs while the bird walks forward. While emitting the call, the head and neck form an arch, and the bill is open. The sound is a bit like a cat’s meow.
+    </div>
+    
+    <div class="option" onclick="checkAnswer('option4')">
+        <input type="radio" name="birdGuess" value="option4"> Yelp, which sounds like a high-pitched bark, is used when a predator is getting close to the gull. The head and neck are upright, although when the call is emitted, the head and neck move a little forward.
+    </div>
+    
+    <div class="feedback" id="feedbackCorrect">
+        <p>Correct! Well done.</p>
+    </div>
+    <div class="feedback" id="feedbackWrong">
+        <p>Incorrect. Here's how that sound would be:</p>
+        <audio id="wrongSound" controls>
+            <source src="path_to_wrong_answer_sound.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <script>
+        function checkAnswer(option) {
+            // Basic logic to check answer. This can be expanded as needed.
+            // For demonstration purposes, we're setting option1 as the correct answer
+            if (option === 'option1') {
+                document.getElementById('feedbackCorrect').style.display = 'block';
+                document.getElementById('feedbackWrong').style.display = 'none';
+            } else {
+                document.getElementById('feedbackWrong').style.display = 'block';
+                document.getElementById('feedbackCorrect').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

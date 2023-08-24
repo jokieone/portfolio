@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oscilloscope Emulator</title>
+    <style>
+        body {
+            font-family: monospace;
+            text-align: center;
+            background-color: #FFFFFF;
+            color: #00A0E9;
+        }
+        canvas {
+            border: 1px solid #00A0E9;
+            display: block;
+            margin: 2% auto;
+        }
+        button, select, label {
+            margin-top: 2%;
+            color: #00A0E9;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="oscilloscope" width="800" height="400"></canvas>
+    <br>
+    <button onclick="startOscillator()">Apply</button>
+    <br>
+    <label for="waveform">Waveform:</label>
+    <select id="waveform" onchange="updateWaveform()">
+        <option value="sine">Sine</option>
+        <option value="square">Square</option>
+        <option value="sawtooth">Sawtooth</option>
+    </select>
+    <br>
+    <label for="cutoff">Cutoff:</label>
+    <input type="range" id="cutoff" min="10" max="22050" value="22050" step="1" oninput="updateFilter()">
+    <br>
+    <label for="resonance">Resonance:</label>
+    <input type="range" id="resonance" min="0.1" max="30" value="1" step="0.1" oninput="updateFilter()">
+    <br>
+    <label for="attack">Attack:</label>
+    <input type="range" id="attack" min="0" max="5" value="0.1" step="0.01" oninput="updateADSR()">
+    <br>
+    <label for="decay">Decay:</label>
+    <input type="range" id="decay" min="0" max="5" value="0.1" step="0.01" oninput="updateADSR()">
+    <br>
+    <label for="sustain">Sustain:</label>
+    <input type="range" id="sustain" min="0" max="1" value="0.7" step="0.01" oninput="updateADSR()">
+    <br>
+    <label for="release">Release:</label>
+    <input type="range" id="release" min="0" max="5" value="0.5" step="0.01" oninput="updateADSR()">
+    <script>
+        let audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        let oscillator;
+        let analyser = audioContext.createAnalyser();
+        let canvas = document.getElementById("oscilloscope");
+        let canvasContext = canvas.getContext("2d");
+        let waveformSelect = document.getElementById("waveform");
+        let filter = audioContext.createBiquadFilter();
+        let gainNode = audioContext.createGain();
+        let adsr = {
+            attack: 0.1,
+            decay: 0.1,
+            sustain: 0.7,
+            release: 0.5
+        };
+        
+        function startOscillator() {
+            if (oscillator) {
+                oscillator.stop();
+            }
+            oscillator = audioContext.createOscillator();
+            oscillator.type = waveformSelect.value;
+            oscillator.connect(filter);
+            filter.connect(gainNode);
+            gainNode.connect(analyser);
+            analyser.connect(audioContext.destination);
+            oscillator.start();
+            updateWaveform();
+            updateFilter();
+            updateADSR();
+            drawOscilloscope();
+        }
+
+        function updateWaveform() {
+            if (oscillator) {
+                oscillator.type = waveformSelect.value;
+            }
+        }
+
+        function updateFilter() {
+            let cutoff = document.getElementById("cutoff").value;
+            let resonance = document.getElementById("resonance").value;
+            
+            filter.type = "lowpass";
+            filter.frequency.setValueAtTime(cutoff, audioContext.currentTime);
+            filter.Q.setValueAtTime(resonance, audioContext.currentTime);
+        }
+
+        function updateADSR() {
+            adsr.attack = parseFloat(document.getElementById("attack").value);
+            adsr.decay = parseFloat(document.getElementById("decay").value);
+            adsr.sustain = parseFloat(document.getElementById("sustain").value);
+            adsr.release = parseFloat(document.getElementById("release").value);
+            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+            gainNode.gain.linearRampToValueAtTime(1, audioContext.currentTime + adsr.attack);
+            gainNode.gain.linearRampToValueAtTime(adsr.sustain, audioContext.currentTime + adsr.attack + adsr.decay);
+            gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + adsr.attack + adsr.decay + adsr.release);
+        }
+
+        function drawOscilloscope() {
+            analyser.fftSize = 2048;
+            let bufferLength = analyser.fftSize;
+            let dataArray = new Uint8Array(bufferLength);
+            
+            canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+            
+            function draw() {
+                let drawVisual = requestAnimationFrame(draw);
+                analyser.getByteTimeDomainData(dataArray);
+                canvasContext.fillStyle = '#FFFFFF';
+                canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+                canvasContext.lineWidth = 2;
+                canvasContext.strokeStyle = '#00A0E9';
+                canvasContext.beginPath();
+                let sliceWidth = canvas.width * 1.0 / bufferLength;
+                let x = 0;
+                for(let i = 0; i < bufferLength; i++) {
+                    let v = dataArray[i] / 128.0;
+                    let y = v * canvas.height/2;
+                    if(i === 0) {
+                        canvasContext.moveTo(x, y);
+                    } else {
+                        canvasContext.lineTo(x, y);
+                    }
+                    x += sliceWidth;
+                }
+                canvasContext.lineTo(canvas.width, canvas.height/2);
+                canvasContext.stroke();
+            }
+            draw();
+        }
+    </script>
+</body>
+</html>
