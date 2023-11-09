@@ -49,40 +49,45 @@
   <!-- Correct placement for movie credits -->
   <div id="movieCredits"></div>
 </div>
+	<div class="review-marquee-container">
+  <marquee id="movieReviewsMarquee" behavior="scroll" direction="left"></marquee>
+</div>
+
 <script>
 	
 const movies = [
-     {
+    {
         "Title": "Dragonwyck",
         "Link": "https://drive.google.com/file/d/1QDaZZaBgPVoQabNLru94DEpDmTSHMBuv/view?usp=drivesdk",
         "Year": 1946.0,
         "Runtime": "103 minutes"
     },
-    {
+	{
+    "Title": "Freud",
+    "Link": "https://drive.google.com/file/d/1WpYN79Uqt4J6FkjMO_uE-SajplGoVO-Q/view?usp=drivesdk",
+    "Year": 1962.0,
+    "Runtime": "140 minutes"
+},
+{
         "Title": "Let The Sunshine In",
         "Link": "https://drive.google.com/file/d/1Wu4uofZK74eOXTWlMosO8xVRx8sP3Vln/view?usp=drivesdk",
         "Year": 2017.0,
-        "Runtime": "94 minutes"
+        "Runtime": "96 minutes"
     },
-    {
-        "Title": "Freud",
-        "Link": "https://drive.google.com/file/d/1WpYN79Uqt4J6FkjMO_uE-SajplGoVO-Q/view?usp=drivesdk",
-        "Year": 1962.0,
-        "Runtime": "140 minutes"
-    },
-    {
-        "Title": "Interlude",
-        "Link": "https://drive.google.com/file/d/1WuDzG8ncYOKs7eBlQKyHpo3XN3_wp3FO/view?usp=drivesdk",
-        "Year": 1957.0,
-        "Runtime": "90 minutes"
-    }, 
     {
         "Title": "Amadeus",
         "Link": "https://drive.google.com/file/d/1Hmbdxj0ttE28FFWDRL8EZnG1CU4rmfca/view?usp=drivesdk",
         "Year": 1984.0,
         "Runtime": "161 minutes"
     },
-    {
+	{
+    "Title": "Interlude",
+    "Link": "https://drive.google.com/file/d/1WuDzG8ncYOKs7eBlQKyHpo3XN3_wp3FO/view?usp=drivesdk",
+    "Year": 1957.0,
+    "Runtime": "90 minutes"
+},
+
+  {
         "Title": "American Gangster",
         "Link": "https://drive.google.com/file/d/1LG6B7a1-N3FPhH4uIcWMFcVomZfzDgx9/view?usp=drivesdk",
         "Year": 2007.0,
@@ -705,11 +710,11 @@ const movies = [
 
 
 function find90MinuteMovies() {
-  const maximumRuntime = 97; // Maximum runtime of 97 minutes or less
-
+  const targetRuntime = 90;
+  const tolerance = 7;
   const shortMovies = movies.filter(movie => {
     const runtime = parseInt(movie.Runtime.split(' ')[0]);
-    return runtime <= maximumRuntime;
+    return Math.abs(runtime - targetRuntime) <= tolerance;
   });
 
   const movieElement = document.getElementById('movieLink');
@@ -727,10 +732,9 @@ function find90MinuteMovies() {
       });
     });
   } else {
-    movieElement.textContent = 'No short movie found.';
+    movieElement.textContent = 'No 90-minute movie found.';
   }
 }
-
 	// Assuming you have a div with id="movieCredits" in your HTML to display the credits
 
 // ... existing code and movie data ...
@@ -834,6 +838,42 @@ function getMovieCredits(movieId, callback) {
         .catch(error => console.error('Error fetching movie credits: ' + movieId, error));
 }
 
+	// Function to fetch movie reviews from TMDb
+function fetchTmdbMovieReviews(movieId, callback) {
+  const apiKey = 'YOUR_TMDB_API_KEY'; // Replace with your actual API key
+  const reviewsUrl = `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${apiKey}`;
+
+  fetch(reviewsUrl)
+    .then(response => response.json())
+    .then(data => {
+      if (data.results) {
+        callback(data.results);
+      } else {
+        console.error(`No reviews found for movie ID: ${movieId}`);
+      }
+    })
+    .catch(error => {
+      console.error(`Error fetching reviews for movie ID: ${movieId}`, error);
+    });
+}
+
+// Function to display reviews in the marquee
+function displayMovieReviews(reviews) {
+  const marquee = document.getElementById('movieReviewsMarquee');
+  marquee.innerHTML = ''; // Clear previous reviews
+
+  // Combine all reviews into one string, separated by " | "
+  const reviewsText = reviews.map(review => `${review.author}: "${review.content}"`).join(' | ');
+
+  // Set the marquee text
+  marquee.textContent = reviewsText;
+}
+
+// Example usage for a selected movie
+const selectedMovieId = 123; // Replace with the actual movie ID
+fetchTmdbMovieReviews(selectedMovieId, displayMovieReviews);
+
+	
 function displayMovieCredits(credits) {
   const director = credits.crew.find(member => member.job === 'Director');
   const actors = credits.cast.slice(0, 5);

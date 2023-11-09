@@ -34,6 +34,22 @@
   #movieLink a {
     color: #06f;
   }
+	/* Existing styles */
+
+/* New styles for the bottom container */
+.bottom-container {
+  position: fixed; /* Fixed position to place it at the bottom */
+  left: 0;
+  right: 0;
+  bottom: 20px; /* Adjust as needed for spacing from the bottom */
+  text-align: center; /* Center-align the contents */
+}
+
+/* Style for the "Show Random Scene" button if needed */
+#randomSceneBtn {
+  /* Add any specific styles you want for the button */
+}
+
 </style>
 </head>
 <body>
@@ -42,13 +58,16 @@
   <label for="yearInput">Enter a year (1946 onwards):</label>
   <input type="number" id="yearInput" min="1946" max="2023">
   <button onclick="findMovie()">Find Movie</button>
-<button onclick="find90MinuteMovies()">Just give me a 90 minuter</button>
-
+  <button onclick="find90MinuteMovies()">Just give me a 90 minuter</button>
 
   <p id="movieLink"></p>
   <!-- Correct placement for movie credits -->
   <div id="movieCredits"></div>
+	<div class="bottom-container">
+  <button id="randomSceneBtn" onclick="showRandomScene()" disabled>Show Random Scene</button>
 </div>
+</div>
+
 <script>
 	
 const movies = [
@@ -728,6 +747,9 @@ function find90MinuteMovies() {
     });
   } else {
     movieElement.textContent = 'No short movie found.';
+	  const randomSceneBtn = document.getElementById('randomSceneBtn');
+randomSceneBtn.disabled = false;
+randomSceneBtn.onclick = function() { showRandomScene(selectedMovie.Title); };
   }
 }
 
@@ -739,13 +761,14 @@ function createMovieElement(selectedMovie, posterPath) {
   const defaultImageUrl = 'Bilder/affich.png'; // Fallback image if posterPath is not available
   const imageUrl = posterPath ? `https://image.tmdb.org/t/p/w500${posterPath}` : defaultImageUrl;
 
-  // Combine title, link, runtime, and password into one row
+  // Combine title, link, runtime, password, and button into one row
   const movieInfoHTML = `
     <p>
-      Title: ${selectedMovie.Title} 
+      Title: ${selectedMovie.Title}
       <a href="${selectedMovie.Link}" target="_blank">| Download |</a>
-       Runtime: ${selectedMovie.Runtime}
-      |  Password: elias | 
+      Runtime: ${selectedMovie.Runtime}
+      | Password: elias |
+      <button onclick="showRandomScene('${selectedMovie.Title.replace("'", "\\'")}')">Show Random Scene</button>
     </p>`;
 
   // Create the movie element and insert the movieInfoHTML
@@ -759,26 +782,6 @@ function createMovieElement(selectedMovie, posterPath) {
 
   // Return the complete movie element
   return movieElement;
-}
-
-// Function to search TMDB for the movie ID based on title and year
-function searchTmdbForMovieId(title, year, callback) {
-  const apiKey = '400455f56b3e2b3e009287db19785e09';
-  const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(title)}&year=${year}`;
-
-  fetch(searchUrl)
-    .then(response => response.json())
-    .then(data => {
-      if (data.results && data.results.length > 0) {
-        const movieId = data.results[0].id;
-        callback(movieId);
-      } else {
-        console.error(`No TMDB entry found for: ${title} (${year})`);
-      }
-    })
-    .catch(error => {
-      console.error(`Error searching TMDB for movie: ${title} (${year})`, error);
-    });
 }
 
 // Function to fetch movie details from TMDB using the movie ID

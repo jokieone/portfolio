@@ -10,8 +10,8 @@
             max-width: 600px;
             margin: 50px auto;
             padding: 20px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        }
+            
+		background-color: #f0f0f0;
         button {
             background-color: #4CAF50;
             color: white;
@@ -37,7 +37,7 @@ Just like people, songs are born every day; this song is from the day you were b
     <h2 id="songTitle"></h2>
 
     <h2>Your Birthday Song:</h2>
-    <iframe id="youtubeEmbed" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+    <iframe id="youtubeEmbed" width="1020" height="630" src="" frameborder="0" allowfullscreen></iframe>
 
     <script>
     const DISCOGS_API_URL = "https://api.discogs.com/database/search";
@@ -48,7 +48,7 @@ Just like people, songs are born every day; this song is from the day you were b
         "Authorization": "Discogs token=dOqLEzunKNWwkBaWDdxTyzjIoTrLfczHQjMZCsZj"
     };
 
-    const YOUTUBE_API_KEY = 'AIzaSyD_v4RN5PJgjeT2YeH1XCmHq-GMclAuSlE';
+    const YOUTUBE_API_KEY = 'AIzaSyCXlfQ3WZ7eI-Tr61gDpeu7ZIcMN7hUo40';
 
     async function getRandomSongFromYear(year) {
         const params = new URLSearchParams({

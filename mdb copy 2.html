@@ -695,7 +695,7 @@ function createTrailerIframe(videoId) {
 // Function to search and display the YouTube trailer
 function searchYouTubeTrailer(movieTitle, movieYear, callback) {
     // Your API Key has been removed for security reasons
-    var apiKey = 'YOUR_API_KEY'; // Replace with your actual YouTube Data API v3 key
+    var apiKey = 'AIzaSyCXlfQ3WZ7eI-Tr61gDpeu7ZIcMN7hUo40'; // Replace with your actual YouTube Data API v3 key
     var searchUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=1&q=' + encodeURIComponent(movieTitle + ' ' + movieYear + ' scene') + '&key=' + apiKey;
 
     fetch(searchUrl)
