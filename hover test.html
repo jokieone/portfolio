@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		 <style>
+    #player {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+  </style>
+		<script src="https://www.youtube.com/player_api"></script>
+		   <script>
+    // JavaScript code for the YouTube video background
+    var player;
+
+    function onYouTubePlayerAPIReady() {
+      player = new YT.Player('player', {
+        videoId: 'Jsnw-RNGKFY',
+        playerVars: {
+          autoplay: 1,
+          start: 30,
+          controls: 0,
+          showinfo: 0,
+          modestbranding: 1,
+          loop: 1,
+          playlist: 'Jsnw-RNGKFY',
+        },
+        events: {
+          onReady: onPlayerReady,
+        },
+      });
+    }
+
+    function onPlayerReady(event) {
+      event.target.mute();
+    }
+  </script>
+
+
+        <style>
+            body {
+                background-color: #000000;
+                color: #FFFFFF;
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+
+            .list-item {
+                margin: 15px 0;
+            }
+
+            .list-item a {
+                text-decoration: none;
+                color: #FFFFFF;
+            }
+
+            .year {
+                font-size: 16px;
+                color: #888888;
+            }
+
+            .title {
+                font-size: 20px;
+                font-weight: bold;
+                margin-left: 10px;
+            }
+
+            .category {
+                font-size: 14px;
+                color: #CCCCCC;
+                margin-left: 10px;
+            }
+
+            .runtime {
+                font-size: 14px;
+                color: #CCCCCC;
+                margin-left: 10px;
+            }
+        </style>
+    </head>
+    <body>
+		<div id="player"></div>
+
+		<marquee>The password to unlock the files is either "Elias" or "elias".</marquee>
+        <div id="list">
+            <div class="list-view">
+                <div class="list-item">
+                    <a id="the-worst-person-in-the-world-list-item" href="https://drive.google.com/file/d/18pZToDcsevLJOF1j2CY9fbFQ15l27OuE/view?usp=drivesdk">
+                        <span class="year">2021</span><span class="title">The Worst Person in the World</span><span class="category"/><span class="runtime">2h 8m</span>
+                    </a>
+                </div>
+                <!-- Add the rest of the movie links with runtimes here -->
+                <div class="list-item">
+                    <a id="the-greasy-strangler-list-item" href="https://drive.google.com/file/d/1CYFg6Xx5bfxHYuwcoHk5vZDrz8o-LKO2/view?usp=drivesdk">
+                        <span class="year">2016</span><span class="title">The Greasy Strangler</span><span class="category"/span><span class="runtime">1h 33m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="the-devils-advocate-list-item" href="https://drive.google.com/file/d/1pukF5uJMAV21WhLyCidtdR4o7mpYSvDt/view?usp=drivesdk">
+                        <span class="year">1997</span><span class="title">The Devil's Advocate</span><span class="category"/span><span class="runtime">2h 24m</span>
+                    </a>
+                <div class="list-item">
+                    <a id="fanny-and-alexander-list-item" href="https://drive.google.com/file/d/1prmv94VkHEO94Dnj2mTG4iGy_11s4dFi/view?usp=drivesdk">
+                        <span class="year">1982</span><span class="title">Fanny and Alexander</span><span class="category"/span><span class="runtime">3h 8m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="down-with-love-list-item" href="https://drive.google.com/file/d/193B0Jm9YjV8mlr2tNvzFEqpL-k72Jvys/view?usp=drivesdk">
+                        <span class="year">2003</span><span class="title">Down with Love</span><span class="category"/span><span class="runtime">1h 41m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="beach-rats-list-item" href="https://drive.google.com/file/d/1CeF9DuvsI5otXRlV53u8zwkgwAKvKOPr/view?usp=drivesdk">
+                        <span class="year">2017</span><span class="title">Beach Rats</span><span class="category"/span><span class="runtime">1h 38m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="200-cigarettes-list-item" href="https://drive.google.com/file/d/1NdQOVOXgN20MvHsjeIYV2z0qdXfxlc5U/view?usp=drivesdk">
+                        <span class="year">1999</span><span class="title">200 Cigarettes</span><span class="category"/span><span class="runtime">1h 41m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="rush-hour-1-list-item" href="https://drive.google.com/file/d/1LrYPkNxJjqjBb_ik2N8DAGcSeCZ4rkEa/view?usp=drivesdk">
+                        <span class="year">1998</span><span class="title">Rush Hour 1</span><span class="category"/span><span class="runtime">1h 38m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="above-the-rim-list-item" href="https://drive.google.com/file/d/1LTpx9P9iONtOzKaDtXJvGLvLm5CC2HhO/view?usp=drivesdk">
+                        <span class="year">1994</span><span class="title">Above the Rim</span><span class="category"/span><span class="runtime">1h 36m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="american-gangster-list-item" href="https://drive.google.com/file/d/1LG6B7a1-N3FPhH4uIcWMFcVomZfzDgx9/view?usp=drivesdk">
+                        <span class="year">2007</span><span class="title">American Gangster</span><span class="category"/span><span class="runtime">2h 37m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="be-kind-rewind-list-item" href="https://drive.google.com/file/d/1L4KmmYghHDFCYzvBDlTquy8BfL9pbw-W/view?usp=drivesdk">
+                        <span class="year">2008</span><span class="title">Be Kind Rewind</span><span class="category"/span><span class="runtime">1h 42m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="chameleon-street-1989-list-item" href="https://drive.google.com/file/d/1KRuZmQuqHTVFve_iBC6VJooPqbdZlqWc/view?usp=drivesdk">
+                        <span class="year">1989</span><span class="title">Chameleon Street</span><span class="category"/span><span class="runtime">1h 34m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="falling-down-list-item" href="https://drive.google.com/file/d/192DTt_mRD3QAQR7fIjGwbhQ_LzU_pGqA/view?usp=drivesdk">
+                        <span class="year">1993</span><span class="title">Falling Down</span><span class="category"/span><span class="runtime">1h 53m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="in-the-loop-list-item" href="https://drive.google.com/file/d/1N_L1NaSvxfU3_MhColfSiI2cqPYHOkxL/view?usp=drivesdk">
+                        <span class="year">2009</span><span class="title">In the Loop</span><span class="category"/span><span class="runtime">1h 46m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="some-like-it-hot-list-item" href="https://drive.google.com/file/d/1NWzs8YkaaLPtrKBaLoKgzTagvKtsuCHQ/view?usp=drivesdk">
+                        <span class="year">1959</span><span class="title">Some Like It Hot</span><span class="category"/span><span class="runtime">2h 1m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="margaret-list-item" href="https://drive.google.com/file/d/1NS9xj5zOlKCbSTEdovROQrmYQ1FxIyE1/view?usp=drivesdk">
+                        <span class="year">2011</span><span class="title">Margaret</span><span class="category"/span><span class="runtime">3h</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="the-rider-2017-list-item" href="https://drive.google.com/file/d/1NDqPRIuEARC2i_Z3qQblJyohf_YHLwvY/view?usp=drivesdk">
+                        <span class="year">2017</span><span class="title">The Rider</span><span class="category"/span><span class="runtime">1h 44m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="dont-look-now-list-item" href="https://drive.google.com/file/d/1N4eMkmJddBq0G9Sgu5jUExIFzc8m69jZ/view?usp=drivesdk">
+                        <span class="year">1973</span><span class="title">Don't Look Now</span><span class="category"/span><span class="runtime">1h 50m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="booksmart-list-item" href="https://drive.google.com/file/d/1Dadma3pvBUdk8iFwO4PNJU0u4sM176gY/view?usp=drivesdk">
+                        <span class="year">2019</span><span class="title">Booksmart</span><span class="category"/span><span class="runtime">1h 42m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="cromwell-list-item" href="https://drive.google.com/file/d/1HvjVHE4hgB5yAeVkkU-YzttiwnBMpEUa/view?usp=drivesdk">
+                        <span class="year">1970</span><span class="title">Cromwell</span><span class="category"/span><span class="runtime">2h 19m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="greasers-palace-list-item" href="https://drive.google.com/file/d/19rX4MgVyQ_6RutVoSixWYW3Hl8sQuH-j/view?usp=drivesdk">
+                        <span class="year">1972</span><span class="title">Greaser's Palace</span><span class="category"/span><span class="runtime">1h 31m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="heavens-gate-list-item" href="https://drive.google.com/file/d/19keyAUPsjHH97WtpKDDJKHI34RoB6WlK/view?usp=drivesdk">
+                        <span class="year">1980</span><span class="title">Heaven's Gate</span><span class="category"/span><span class="runtime">3h 39m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="kajillionaire-list-item" href="https://drive.google.com/file/d/1JKveXYCknxAg7Pzz03vLxiwdoJP4T72w/view?usp=drivesdk">
+                        <span class="year">2020</span><span class="title">Kajillionaire</span><span class="category"/span><span class="runtime">1h 44m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="the-fortune-list-item" href="https://drive.google.com/file/d/1KLptGfJkAFBsGNbnYQNJ-JciRDuTYEUH/view?usp=drivesdk">
+                        <span class="year">1975</span><span class="title">The Fortune</span><span class="category"/span><span class="runtime">1h 28m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="blood-simple-list-item" href="https://drive.google.com/file/d/1KJ_5_7cBQ5gzgTHczG59ojR_BT8AYeEx/view?usp=drivesdk">
+                        <span class="year">1984</span><span class="title">Blood Simple</span><span class="category"/span><span class="runtime">1h 39m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="edtv-list-item" href="https://drive.google.com/file/d/1Jz4bhFLJsLW2MUvj6pXscjxYidKtDFWa/view?usp=drivesdk">
+                        <span class="year">1999</span><span class="title">Edtv</span><span class="category"/span><span class="runtime">2h 2m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="brothers-keeper-list-item" href="https://drive.google.com/file/d/1Jx65GGMu-tEJuk0lu1MjQc0D1fCpU_aF/view?usp=drivesdk">
+                        <span class="year">1992</span><span class="title">Brother's Keeper</span><span class="category"/span><span class="runtime">1h 45m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="the-big-blue-list-item" href="https://drive.google.com/file/d/19ziaynA-oytFvnJngjrxNmmxtZeHBj5C/view?usp=drivesdk">
+                        <span class="year">1988</span><span class="title">The Big Blue</span><span class="category"/span><span class="runtime">2h 48m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="next-of-kin-list-item" href="https://drive.google.com/file/d/19zhLfFYRB7Ajsubsseqcz9fW7yFv6e3w/view?usp=drivesdk">
+                        <span class="year">1989</span><span class="title">Next of Kin</span><span class="category"/span><span class="runtime">1h 29m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="did-you-wonder-who-fired-the-gun-list-item" href="https://drive.google.com/file/d/1Dky1Z7UevK-8-7uafZWzwIkcZsdotvHc/view?usp=drivesdk">
+                        <span class="year">2017</span><span class="title">Did You Wonder Who Fired the Gun</span><span class="category"/span><span class="runtime">1h 30m</span>
+                    </a>
+                </div>
+               
+                <div class="list-item">
+                    <a id="burn-after-reading-list-item" href="https://drive.google.com/file/d/1DW2g_YaRQ0amann1ZPlHX-0u8FbOkzTq/view?usp=drivesdk">
+                        <span class="year">2008</span><span class="title">Burn After Reading</span><span class="category"/span><span class="runtime">1h 36m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="approaching-the-elephant-list-item" href="https://drive.google.com/file/d/1CcYQ_rrIymsySM2An4A8QiJBzUUCsJyr/view?usp=drivesdk">
+                        <span class="year">2014</span><span class="title">Approaching the Elephant</span><span class="category"/span><span class="runtime">1h 30m</span>
+                    </a>
+                </div>
+					<div class="list-item">
+    <a id="sylvio-list-item" href="https://drive.google.com/file/d/1DXckd9ymdbspH86HwFTuk_LVawSztJZ-/view?usp=drivesdk">
+        <span class="year">2017</span><span class="title">Sylvio</span><span class="category"/span><span class="runtime">80 minutes</span>
+    </a>
+</div>
+
+<div class="list-item">
+    <a id="saturday-fiction-list-item" href="https://drive.google.com/file/d/1A2s2HYnEbMLCTz47EOisGiita3XXOCY3/view?usp=drivesdk">
+        <span class="year">2019</span><span class="title">Saturday Fiction</span><span class="category"/span><span class="runtime">127 minutes</span>
+    </a>
+</div>
+
+<div class="list-item">
+    <a id="a-midsummer-nights-rave-list-item" href="https://drive.google.com/file/d/19LM07IJ7QVM3N3I5tIkt8CT7AD9a6zDc/view?usp=drivesdk">
+        <span class="year">2002</span><span class="title">A Midsummer Nights Rave</span><span class="category"/span><span class="runtime">85 minutes</span>
+    </a>
+</div>
+
+                <div class="list-item">
+                    <a id="adam-list-item" href="https://drive.google.com/file/d/1B9XM0H_PilATZs7sdIMM4R523nuYBZL1/view?usp=drivesdk">
+                        <span class="year">2009</span><span class="title">Adam</span><span class="category"/span><span class="runtime">1h 39m</span>
+                    </a>
+                </div>
+                <div class="list-item">
+                    <a id="amadeus-list-item" href="https://drive.google.com/file/d/1Hmbdxj0ttE28FFWDRL8EZnG1CU4rmfca/view?usp=drivesdk">
+                        <span class="year">1984</span><span class="title">Amadeus</span><span class="category"/span><span class="runtime">2h 40m</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
