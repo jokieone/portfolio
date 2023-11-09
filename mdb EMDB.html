@@ -48,6 +48,8 @@
   <p id="movieLink"></p>
   <!-- Correct placement for movie credits -->
   <div id="movieCredits"></div>
+	
+	
 </div>
 <script>
 	
@@ -815,35 +817,38 @@ function getMovieCredits(movieId, callback) {
         .catch(error => console.error('Error fetching movie credits: ' + movieId, error));
 }
 
-function displayMovieCredits(credits) {
-  const director = credits.crew.find(member => member.job === 'Director');
-  const actors = credits.cast.slice(0, 5);
-  const movieCreditsElement = document.getElementById('movieCredits');
-  movieCreditsElement.innerHTML = ''; // Clear any existing content
 
-  if (director) {
-    const directorUrl = `https://www.themoviedb.org/person/${director.id}`;
-    movieCreditsElement.innerHTML += `<p>Director: <a href="${directorUrl}" target="_blank">${director.name}</a></p>`;
-  } else {
-    movieCreditsElement.innerHTML += '<p>Director information not available.</p>';
-  }
+function fetchTmdbMovieVideos(movieId, callback) {
+  const apiKey = '400455f56b3e2b3e009287db19785e09';
+  const videosUrl = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`;
 
-  if (actors.length > 0) {
-    let actorsHTML = '<p>Actors: ';
-    actors.forEach((actor, index) => {
-      const actorUrl = `https://www.themoviedb.org/person/${actor.id}`;
-      actorsHTML += `<a href="${actorUrl}" target="_blank">${actor.name}</a>`;
-      if (index < actors.length - 1) {
-        actorsHTML += ', '; // Add a comma after each actor except the last
+  fetch(videosUrl)
+    .then(response => response.json())
+    .then(data => {
+      if (data.results && data.results.length > 0) {
+        callback(data.results); // Send the videos data back through the callback
+      } else {
+        console.error('No videos found for movie ID: ' + movieId);
       }
-    });
-    actorsHTML += '</p>';
-    movieCreditsElement.innerHTML += actorsHTML;
-  } else {
-    movieCreditsElement.innerHTML += '<p>Actor information not available.</p>';
-  }
+    })
+    .catch(error => console.error('Error fetching TMDB videos for movie ID: ' + movieId, error));
 }
 
+// Example callback function to handle the videos
+function displayMovieVideos(videos) {
+  const videosContainer = document.getElementById('movieVideos');
+  videosContainer.innerHTML = ''; // Clear any existing content
+
+  videos.forEach(video => {
+    if (video.site === "YouTube") {
+      const videoUrl = `https://www.youtube.com/watch?v=${video.key}`;
+      const videoElement = document.createElement('iframe');
+      videoElement.src = videoUrl;
+      videoElement.width = '560';
+      videoElement.height = '315';
+      videoElement.frameBorder = '0';
+      videoElement.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture
+	
 
 
 // Example usage for a selected movie
