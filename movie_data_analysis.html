@@ -1,57 +1,58 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EMDB</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0; /* This sets the background color of the entire page */
-  }
-  .intro-text {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    max-width: 400px;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.4;
-    color: #222;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 2;
-  }
-  .label-container {
-    background-color: #fff; /* This sets the background color for the group of elements */
-    border: 2px solid #fff; /* This adds a white border around the group */
-    padding: 10px; /* Adds padding inside the border */
-    border-radius: 5px; /* Optional: adds rounded corners to the border */
-    display: inline-block; /* Ensures the border encompasses all the child elements */
-    margin-bottom: 10px; /* Adds some space below the container */
-  }
-  #movieLink a {
-    color: #06f;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Data Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
 </head>
 <body>
-	
-<div class="label-container">
-  <label for="yearInput">Enter a year:</label>
-  <input type="number" id="yearInput" min="1919" max="2023">
-  <button onclick="findMovie()">Find Movie</button>
-<button onclick="find90MinuteMovies()">Give me a 90 minuter</button>
+    <div class="container">
+        <h2>Movies Per Year</h2>
+        <table id="movies-per-year">
+            <!-- Movie year data will be populated here -->
+        </table>
 
+        <h2>Movies Per Runtime</h2>
+        <table id="movies-per-runtime">
+            <!-- Movie runtime data will be populated here -->
+        </table>
+    </div>
 
-  <p id="movieLink"></p>
-  <!-- Correct placement for movie credits -->
-  <div id="movieCredits"></div>
-</div>
-<script>
-	
-const movies = [
+    <script>
+        const movies = [
+           
      {
         "Title": "Dragonwyck",
         "Link": "https://drive.google.com/file/d/1QDaZZaBgPVoQabNLru94DEpDmTSHMBuv/view?usp=drivesdk",
@@ -232,12 +233,6 @@ const movies = [
         "Year": 1978.0,
         "Runtime": "90 minutes"
     },
-	{
-    "Title": "The Big Broadcast",
-    "Link": "https://www.youtube.com/watch?v=nCC4zlrC5rQ&ab_channel=KleovoulosChristofi",
-    "Year": 1932.0,
-    "Runtime": "97 minutes"
-},
     {
         "Title": "The House of Mirth",
         "Link": "https://drive.google.com/file/d/1WOf0tYCVcFiV7t-0KJh4ASDxy-FOJRQV/view?usp=drivesdk",
@@ -712,483 +707,55 @@ const movies = [
         "Year": 1965.0,
         "Runtime": "116 minutes"
     },
-	{
-        "Title": "The 47 Ronin",
-        "Link": "https://www.youtube.com/watch?v=KiCWrDMZZFk&ab_channel=menatil",
-        "Year": 1941.0
-    },
-    {
-        "Title": "How Green was My Valley",
-        "Link": "https://www.youtube.com/watch?v=6mBkd-Au4IY&ab_channel=me.kayaalp",
-        "Year": 1941.0
-    },
-    {
-        "Title": "Rebecca",
-        "Link": "https://www.youtube.com/watch?v=xOGJQsyxNaA&ab_channel=Movie-Buff",
-        "Year": 1940.0
-    },
-    {
-        "Title": "Detour",
-        "Link": "https://www.youtube.com/watch?v=tap67KjjPu8&ab_channel=TimelessClassicMovies",
-        "Year": 1945.0
-    },
-    {
-        "Title": "I Accuse My Parents",
-        "Link": "https://www.youtube.com/watch?v=x-itMUUqdFI&ab_channel=TheFilmDetective",
-        "Year": 1944.0
-    },
-    {
-        "Title": "The Man Who Wouldn't Die",
-        "Link": "https://www.youtube.com/watch?v=9THX4bCm5a0&ab_channel=NostalgicArtStudio",
-        "Year": 1942.0
-    },
-    {
-        "Title": "Hell's Angels",
-        "Link": "https://www.youtube.com/watch?v=f485-FoJ428&ab_channel=THETECHNOSAURUS",
-        "Year": 1930.0
-    },
-    {
-        "Title": "Earth",
-        "Link": "https://www.youtube.com/watch?v=A-E57eyjoao&ab_channel=AllsovietmoviesonRVISION",
-        "Year": 1930.0
-    },
-	
     {
         "Title": "Bicycle Thieves",
         "Link": "https://drive.google.com/drive/folders/1FTCXc-KRmeAOP9WHADVwlFURJBP-Sjli",
         "Year": 1948.0,
         "Runtime": "89 minutes"
-    },
-{
-        "Title": "The 47 Ronin",
-        "Link": "https://www.youtube.com/watch?v=KiCWrDMZZFk&ab_channel=menatil",
-        "Year": 1941.0,
-        "Runtime": "241 minutes"
-    },
-    {
-        "Title": "How Green was My Valley",
-        "Link": "https://www.youtube.com/watch?v=6mBkd-Au4IY&ab_channel=me.kayaalp",
-        "Year": 1941.0,
-        "Runtime": "118 minutes"
-    },
-    {
-        "Title": "Rebecca",
-        "Link": "https://www.youtube.com/watch?v=xOGJQsyxNaA&ab_channel=Movie-Buff",
-        "Year": 1940.0,
-        "Runtime": "130 minutes"
-    },
-    {
-        "Title": "Detour",
-        "Link": "https://www.youtube.com/watch?v=tap67KjjPu8&ab_channel=TimelessClassicMovies",
-        "Year": 1945.0,
-        "Runtime": "68 minutes"
-    },
-    {
-        "Title": "I Accuse My Parents",
-        "Link": "https://www.youtube.com/watch?v=x-itMUUqdFI&ab_channel=TheFilmDetective",
-        "Year": 1944.0,
-        "Runtime": "68 minutes"
-    },
-    {
-        "Title": "The Man Who Wouldn't Die",
-        "Link": "https://www.youtube.com/watch?v=9THX4bCm5a0&ab_channel=NostalgicArtStudio",
-        "Year": 1942.0,
-        "Runtime": "65 minutes"
-    },
-    {
-        "Title": "Hell's Angels",
-        "Link": "https://www.youtube.com/watch?v=f485-FoJ428&ab_channel=THETECHNOSAURUS",
-        "Year": 1930.0,
-        "Runtime": "127 minutes"
-    },
-    {
-        "Title": "Earth",
-        "Link": "https://www.youtube.com/watch?v=A-E57eyjoao&ab_channel=AllsovietmoviesonRVISION",
-        "Year": 1930.0,
-        "Runtime": "75 minutes"
-    },
-    {
-        "Title": "City Lights",
-        "Link": "https://www.youtube.com/watch?v=TkF1we_DeCQ&ab_channel=Dom%C3%ADnioP%C3%BAblico",
-        "Year": 1931.0,
-        "Runtime": "87 minutes"
-    },
-    {
-        "Title": "Bästa Barn",
-        "Link": "https://www.youtube.com/watch?v=QPVLTubt6wY&ab_channel=ScottLordOnScandinavianSilentFilm",
-        "Year": 1918.0,
-        "Runtime": "95 minutes"
-    },
-    {
-        "Title": "Herr Arnes Pengar",
-        "Link": "https://www.youtube.com/watch?v=0XHu2RWIR7c&ab_channel=Films",
-        "Year": 1919.0,
-        "Runtime": "122 minutes"
-    },
-	 {
-        "Title": "The Cabinet of Dr. Caligari",
-        "Link": "https://www.youtube.com/watch?v=WmlaUHqQNao&list=PL7fyCZztKfrLh2r2hIGfD442PWCopGzmN&ab_channel=GabinetedeFreaks",
-        "Year": 1920.0,
-        "Runtime": "76 minutes"
-    },
-    {
-        "Title": "Camille",
-        "Link": "https://www.youtube.com/watch?v=ZUNfYlmBn60&ab_channel=ClassicMoviesChannel",
-        "Year": 1921.0,
-        "Runtime": "69 minutes"
-    },
-    {
-        "Title": "Nosferatu",
-        "Link": "https://www.youtube.com/watch?v=dCT1YUtNOA8&ab_channel=BestClassics",
-        "Year": 1922.0,
-        "Runtime": "94 minutes"
-    },
-    {
-        "Title": "Schatten - Eine nächtliche Halluzination",
-        "Link": "https://www.youtube.com/watch?v=ki3GrUkL26g&list=PLW_OVmQBL-kIlFtGewa-6rqFUPT1lyrmt&index=11&ab_channel=FilmsbytheYear",
-        "Year": 1923.0,
-        "Runtime": "90 minutes"
-    },
-    {
-        "Title": "Sherlock Jr",
-        "Link": "https://www.youtube.com/watch?v=fZuqWxITq38&ab_channel=Laurel%26Hardy",
-        "Year": 1924.0,
-        "Runtime": "45 minutes"
-    },
-    {
-        "Title": "Gold Rush",
-        "Link": "https://www.youtube.com/watch?v=nq_frZc-NxE&ab_channel=CINEMUDOLANDIA",
-        "Year": 1925.0,
-        "Runtime": "95 minutes"
-    },
-    {
-        "Title": "Faust",
-        "Link": "https://www.youtube.com/watch?v=b4zuBC2XRA0&ab_channel=moonflix",
-        "Year": 1926.0,
-        "Runtime": "107 minutes"
-    },
-    {
-        "Title": "Metropolis",
-        "Link": "https://www.youtube.com/watch?v=W_4no842TX8&ab_channel=AllTimeClassics",
-        "Year": 1927.0,
-        "Runtime": "153 minutes"
-    },
-    {
-        "Title": "The Docks of New York",
-        "Link": "https://www.youtube.com/watch?v=7_A6T2uFKTY&ab_channel=OldTimes",
-        "Year": 1928.0,
-        "Runtime": "76 minutes"
-    },
-    {
-        "Title": "Applause",
-        "Link": "https://youtube.com/watch?v=tNzteHAjihc&ab_channel=BethanyJacobson",
-        "Year": 1929.0,
-        "Runtime": "80 minutes"
-    },
-	{
-        "Title": "The Ghoul",
-        "Link": "https://www.youtube.com/watch?v=Ykor2AjjIzU&ab_channel=SafehouseHorror",
-        "Year": 1933.0,
-        "Runtime": "77 minutes"
-    },
-    {
-        "Title": "'Neath The Arizona Skies",
-        "Link": "https://www.youtube.com/watch?v=gxcCeITSNwk&ab_channel=AmericanPublicDomainCollection",
-        "Year": 1934.0,
-        "Runtime": "52 minutes"
-    },
-    {
-        "Title": "Aerograd",
-        "Link": "https://www.youtube.com/watch?v=9RzVibSqI5U&ab_channel=AllsovietmoviesonRVISION",
-        "Year": 1935.0,
-        "Runtime": "82 minutes"
-    },
-    {
-        "Title": "My Man Godfrey",
-        "Link": "",
-        "Year": 1936.0,
-        "Runtime": "94 minutes"
-    },
-    {
-        "Title": "Heidi",
-        "Link": "https://www.youtube.com/watch?v=hcMSyLFAOr8&ab_channel=CultCinemaClassics",
-        "Year": 1937.0,
-        "Runtime": "88 minutes"
-    },
-    {
-        "Title": "Gangs of New York",
-        "Link": "https://www.youtube.com/watch?v=A_5J6hg79is&ab_channel=TheFederalFile",
-        "Year": 1938.0,
-        "Runtime": "67 minutes"
-    },
-    {
-        "Title": "La règle du jeu",
-        "Link": "https://www.youtube.com/watch?v=xL83GHBanCw&ab_channel=TravisPictures",
-        "Year": 1939.0,
-        "Runtime": "110 minutes"
     }
-];
 
 
+        ];
 
-function find90MinuteMovies() {
-    const maximumRuntime = 97; // Maximum runtime of 97 minutes or less
+        function processMovieData() {
+            const yearCounts = {};
+            const runtimeCounts = {};
 
-    const shortMovies = movies.filter(movie => {
-        // Check if the Runtime property is defined and not null, and the year is after 1945
-        if (movie.Runtime && movie.Year > 1945) {
-            const runtime = parseInt(movie.Runtime.split(' ')[0]);
-            return runtime <= maximumRuntime;
-        }
-        return false; // If Runtime is undefined, null, or year is 1945 or before, exclude this movie
-    });
+            movies.forEach(movie => {
+                // Count movies per year
+                const year = movie.Year;
+                if (!yearCounts[year]) {
+                    yearCounts[year] = { count: 0, movies: [] };
+                }
+                yearCounts[year].count++;
+                yearCounts[year].movies.push(movie.Title);
 
-    const movieElement = document.getElementById('movieLink');
-    movieElement.innerHTML = ''; // Clear previous results
-
-    if (shortMovies.length > 0) {
-        const selectedMovie = shortMovies[Math.floor(Math.random() * shortMovies.length)];
-        searchTmdbForMovieId(selectedMovie.Title, selectedMovie.Year, (movieId) => {
-            fetchTmdbMovieDetails(movieId, (imageUrl) => {
-                const movieElement = createMovieElement(selectedMovie, imageUrl);
-                document.getElementById('movieLink').appendChild(movieElement);
-                getMovieCredits(movieId, (credits) => {
-                    displayMovieCredits(credits);
-                });
+                // Count movies per runtime
+                const runtime = movie.Runtime;
+                if (!runtimeCounts[runtime]) {
+                    runtimeCounts[runtime] = { count: 0, movies: [] };
+                }
+                runtimeCounts[runtime].count++;
+                runtimeCounts[runtime].movies.push(movie.Title);
             });
-        });
-    } else {
-        movieElement.textContent = 'No short movie found.';
-    }
-}
 
-	// Assuming you have a div with id="movieCredits" in your HTML to display the credits
+            populateTable('movies-per-year', yearCounts);
+            populateTable('movies-per-runtime', runtimeCounts);
+        }
 
-// ... existing code and movie data ...
-// Helper function to create a movie element
-function createMovieElement(selectedMovie, posterPath) {
-  const defaultImageUrl = 'Bilder/poster.png'; // Fallback image if posterPath is not available
-  const imageUrl = posterPath ? `https://image.tmdb.org/t/p/w500${posterPath}` : defaultImageUrl;
-
-  // Combine title, link, runtime, and password into one row
-  const movieInfoHTML = `
-    <p>
-        ${selectedMovie.Title}    
-      
-        | Runtime: ${selectedMovie.Runtime}  | 
-<a href="${selectedMovie.Link}" target="_blank">   Link</a>
-      |  Password: elias 
-    </p>`;
-
-  // Create the movie element and insert the movieInfoHTML
-  const movieElement = document.createElement('div');
-  movieElement.classList.add('movie-element');
-  movieElement.innerHTML = `
-    <div class="movie-info">${movieInfoHTML}</div>
-    <div class="movie-poster">
-      <img src="${imageUrl}" alt="${selectedMovie.Title} Poster" style="max-width:100%;height:auto;">
-    </div>`;
-
-  // Return the complete movie element
-  return movieElement;
-}
-	
-
-// Function to search TMDB for the movie ID based on title and year
-function searchTmdbForMovieId(title, year, callback) {
-  const apiKey = '400455f56b3e2b3e009287db19785e09';
-  const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(title)}&year=${year}`;
-
-  fetch(searchUrl)
-    .then(response => response.json())
-    .then(data => {
-      if (data.results && data.results.length > 0) {
-        const movieId = data.results[0].id;
-        callback(movieId);
-      } else {
-        console.error(`No TMDB entry found for: ${title} (${year})`);
-      }
-    })
-    .catch(error => {
-      console.error(`Error searching TMDB for movie: ${title} (${year})`, error);
-    });
-}
-
-// Function to fetch movie details from TMDB using the movie ID
-function fetchTmdbMovieDetails(movieId, callback) {
-  const apiKey = '400455f56b3e2b3e009287db19785e09';
-  const detailsUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`;
-
-  fetch(detailsUrl)
-    .then(response => response.json())
-    .then(data => {
-      if (data.poster_path) {
-        const imageUrl = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
-        callback(imageUrl);
-      } else {
-        // If no poster path, use a placeholder
-        const placeholderUrl = 'Bilder/poster.png'; // Replace with the path to your placeholder image
-        callback(placeholderUrl);
-      }
-    })
-    .catch(error => {
-      console.error(`Error fetching TMDB details for movie ID: ${movieId}`, error);
-      const placeholderUrl = 'Bilder/poster.png'; // Use a placeholder on error
-      callback(placeholderUrl);
-    });
-}
-	
-
-function getTmdbMovieId(title, year, callback) {
-    const apiKey = '400455f56b3e2b3e009287db19785e09';
-    const query = encodeURIComponent(title);
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&year=${year}`;
-
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            if (data.results && data.results.length > 0) {
-                const movieId = data.results[0].id; // Taking the first result as the correct one
-                callback(movieId);
-            } else {
-                console.error('Movie not found in TMDB: ' + title);
+        function populateTable(tableId, data) {
+            const table = document.getElementById(tableId);
+            for (const key in data) {
+                const row = table.insertRow();
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+                cell1.innerHTML = key;
+                cell2.innerHTML = `${data[key].count} movies (${data[key].movies.join(', ')})`;
             }
-        })
-        .catch(error => console.error('Error searching for movie: ' + title, error));
-}
+        }
 
-function getMovieCredits(movieId, callback) {
-    const apiKey = '400455f56b3e2b3e009287db19785e09';
-    const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`;
-
-    fetch(url)
-        .then(response => response.json())
-        .then(data => callback(data))
-        .catch(error => console.error('Error fetching movie credits: ' + movieId, error));
-}
-
-function displayMovieCredits(credits) {
-  const director = credits.crew.find(member => member.job === 'Director');
-  const actors = credits.cast.slice(0, 5);
-  const movieCreditsElement = document.getElementById('movieCredits');
-  movieCreditsElement.innerHTML = ''; // Clear any existing content
-
-  if (director) {
-    const directorUrl = `https://www.themoviedb.org/person/${director.id}`;
-    movieCreditsElement.innerHTML += `<p>Director: <a href="${directorUrl}" target="_blank">${director.name}</a></p>`;
-  } else {
-    movieCreditsElement.innerHTML += '<p>Director information not available.</p>';
-  }
-
-  if (actors.length > 0) {
-    let actorsHTML = '<p>Actors: ';
-    actors.forEach((actor, index) => {
-      const actorUrl = `https://www.themoviedb.org/person/${actor.id}`;
-      actorsHTML += `<a href="${actorUrl}" target="_blank">${actor.name}</a>`;
-      if (index < actors.length - 1) {
-        actorsHTML += ', '; // Add a comma after each actor except the last
-      }
-    });
-    actorsHTML += '</p>';
-    movieCreditsElement.innerHTML += actorsHTML;
-  } else {
-    movieCreditsElement.innerHTML += '<p>Actor information not available.</p>';
-  }
-}
-
-
-
-// Example usage for a selected movie
-const selectedMovie = {
-  Title: "Amadeus",
-  Year: 1984,
-  // ... other movie properties
-};
-
-searchTmdbForMovieId(selectedMovie.Title, selectedMovie.Year, (movieId) => {
-  fetchTmdbMovieDetails(movieId, (details) => {
-    const imageUrl = `https://image.tmdb.org/t/p/w500${details.poster_path}`;
-    const movieElement = createMovieElement(selectedMovie, imageUrl);
-    // Append movieElement to the DOM where you want to display it
-  });
-});
-
-
-function findMovie() {
-  const year = parseFloat(document.getElementById('yearInput').value);
-  const moviesFromYear = movies.filter(movie => movie.Year === year);
-  const movieElement = document.getElementById('movieLink');
-  movieElement.innerHTML = ''; // Clear previous results
-
-  if (moviesFromYear.length > 0) {
-    const selectedMovie = moviesFromYear[Math.floor(Math.random() * moviesFromYear.length)];
-
-    // Fetch TMDB movie details to get the poster
-    searchTmdbForMovieId(selectedMovie.Title, selectedMovie.Year, (movieId) => {
-      fetchTmdbMovieDetails(movieId, (imageUrl) => {
-        const movieElementWithPoster = createMovieElement(selectedMovie, imageUrl);
-        movieElement.appendChild(movieElementWithPoster);
-        
-        // Fetch and display TMDB movie credits
-        getMovieCredits(movieId, (credits) => {
-          displayMovieCredits(credits);
-        });
-      });
-    });
-  } else {
-    movieElement.textContent = 'No movie found for that year.';
-  }
-}
-
-
-// Function to search TMDB for the movie ID based on title and year
-function searchTmdbForMovieId(title, year, callback) {
-  const apiKey = '400455f56b3e2b3e009287db19785e09';
-  const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(title)}&year=${year}`;
-
-  fetch(searchUrl)
-    .then(response => response.json())
-    .then(data => {
-      if (data.results && data.results.length > 0) {
-        const movieId = data.results[0].id;
-        callback(movieId);
-      } else {
-        console.error(`No TMDB entry found for: ${title} (${year})`);
-      }
-    })
-    .catch(error => {
-      console.error(`Error searching TMDB for movie: ${title} (${year})`, error);
-    });
-}
-
-// Function to fetch movie details from TMDB using the movie ID
-function fetchTmdbMovieDetails(movieId, callback) {
-  const apiKey = '400455f56b3e2b3e009287db19785e09'; // Replace with your actual API key
-  const detailsUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`;
-
-  fetch(detailsUrl)
-    .then(response => response.json())
-    .then(data => {
-      // Check if the poster path is not null
-      if (data.poster_path) {
-        const imageUrl = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
-        callback(imageUrl, null);
-      } else {
-        // If no poster path, use a placeholder
-        const placeholderUrl = '/path/to/your/placeholder/image.png'; // Replace with the path to your placeholder image
-        callback(null, placeholderUrl);
-      }
-    })
-    .catch(error => {
-      console.error(`Error fetching TMDB details for movie ID: ${movieId}`, error);
-      callback(null, '/path/to/your/placeholder/image.png'); // Use a placeholder on error
-    });
-}
-
-
-
-
-
-</script>
+        // Run the function to process and display data
+        processMovieData();
+    </script>
 </body>
 </html>

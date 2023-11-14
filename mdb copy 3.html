@@ -34,21 +34,54 @@
   #movieLink a {
     color: #06f;
   }
+	 .controls {
+            position: fixed; /* Fixed position to keep controls at the top */
+            top: 10px;
+            left: 10px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 10;
+            width: calc(100% - 20px); /* Adjust width as needed */
+        }
+
+        .results {
+            margin-top: 150px; /* Adjust this value based on the height of your controls */
+        }
+    </style>
 </style>
 </head>
 <body>
+    <div class="controls">
+        <div class="label-container">
+            <label for="yearInput">Choose movie by:</label>
+            <input type="number" id="yearInput" min="1946" max="2023">
+            <button onclick="findMovie()">year </button>
+    
+
+           <div class="label-container">
+                <label for="runtimeInput"> or runtime: <span id="runtimeRange"></span></label>
+                <input type="number" id="runtimeInput" min="1">
+                <button onclick="findMovieByRuntime()">minutes</button>
+            </div>
+			<label for="yearInput">│</label>
 	
-<div class="label-container">
-  <label for="yearInput">Enter a year:</label>
-  <input type="number" id="yearInput" min="1919" max="2023">
-  <button onclick="findMovie()">Find Movie</button>
-<button onclick="find90MinuteMovies()">Give me a 90 minuter</button>
+			         <button onclick="find90MinuteMovies()"> just give me one ≈
+ 90 minutes long</button>
+        </div>
+    </div>
 
+    <div class="results">
+        <p id="movieLink"></p>
+        <div id="movieCredits"></div>
+        <div id="runtimeResults"></div>
+    </div>
 
-  <p id="movieLink"></p>
-  <!-- Correct placement for movie credits -->
-  <div id="movieCredits"></div>
-</div>
+    <div class="results">
+        <p id="movieLink"></p>
+        <div id="movieCredits"></div>
+        <div id="runtimeResults"></div>
+    </div>
 <script>
 	
 const movies = [
@@ -232,12 +265,6 @@ const movies = [
         "Year": 1978.0,
         "Runtime": "90 minutes"
     },
-	{
-    "Title": "The Big Broadcast",
-    "Link": "https://www.youtube.com/watch?v=nCC4zlrC5rQ&ab_channel=KleovoulosChristofi",
-    "Year": 1932.0,
-    "Runtime": "97 minutes"
-},
     {
         "Title": "The House of Mirth",
         "Link": "https://drive.google.com/file/d/1WOf0tYCVcFiV7t-0KJh4ASDxy-FOJRQV/view?usp=drivesdk",
@@ -623,7 +650,7 @@ const movies = [
         "Runtime": "101 minutes"
     },
     {
-        "Title": "Color Brisk Leaping Day",
+        "Title": "Color of a Brisk and Leaping Day",
         "Link": "https://drive.google.com/drive/folders/1yXEYCJas1PI6uobP0l3Ehdt2JyG6-Jqm",
         "Year": 1996.0,
         "Runtime": "90 minutes"
@@ -712,254 +739,65 @@ const movies = [
         "Year": 1965.0,
         "Runtime": "116 minutes"
     },
-	{
-        "Title": "The 47 Ronin",
-        "Link": "https://www.youtube.com/watch?v=KiCWrDMZZFk&ab_channel=menatil",
-        "Year": 1941.0
-    },
-    {
-        "Title": "How Green was My Valley",
-        "Link": "https://www.youtube.com/watch?v=6mBkd-Au4IY&ab_channel=me.kayaalp",
-        "Year": 1941.0
-    },
-    {
-        "Title": "Rebecca",
-        "Link": "https://www.youtube.com/watch?v=xOGJQsyxNaA&ab_channel=Movie-Buff",
-        "Year": 1940.0
-    },
-    {
-        "Title": "Detour",
-        "Link": "https://www.youtube.com/watch?v=tap67KjjPu8&ab_channel=TimelessClassicMovies",
-        "Year": 1945.0
-    },
-    {
-        "Title": "I Accuse My Parents",
-        "Link": "https://www.youtube.com/watch?v=x-itMUUqdFI&ab_channel=TheFilmDetective",
-        "Year": 1944.0
-    },
-    {
-        "Title": "The Man Who Wouldn't Die",
-        "Link": "https://www.youtube.com/watch?v=9THX4bCm5a0&ab_channel=NostalgicArtStudio",
-        "Year": 1942.0
-    },
-    {
-        "Title": "Hell's Angels",
-        "Link": "https://www.youtube.com/watch?v=f485-FoJ428&ab_channel=THETECHNOSAURUS",
-        "Year": 1930.0
-    },
-    {
-        "Title": "Earth",
-        "Link": "https://www.youtube.com/watch?v=A-E57eyjoao&ab_channel=AllsovietmoviesonRVISION",
-        "Year": 1930.0
-    },
-	
     {
         "Title": "Bicycle Thieves",
         "Link": "https://drive.google.com/drive/folders/1FTCXc-KRmeAOP9WHADVwlFURJBP-Sjli",
         "Year": 1948.0,
         "Runtime": "89 minutes"
-    },
-{
-        "Title": "The 47 Ronin",
-        "Link": "https://www.youtube.com/watch?v=KiCWrDMZZFk&ab_channel=menatil",
-        "Year": 1941.0,
-        "Runtime": "241 minutes"
-    },
-    {
-        "Title": "How Green was My Valley",
-        "Link": "https://www.youtube.com/watch?v=6mBkd-Au4IY&ab_channel=me.kayaalp",
-        "Year": 1941.0,
-        "Runtime": "118 minutes"
-    },
-    {
-        "Title": "Rebecca",
-        "Link": "https://www.youtube.com/watch?v=xOGJQsyxNaA&ab_channel=Movie-Buff",
-        "Year": 1940.0,
-        "Runtime": "130 minutes"
-    },
-    {
-        "Title": "Detour",
-        "Link": "https://www.youtube.com/watch?v=tap67KjjPu8&ab_channel=TimelessClassicMovies",
-        "Year": 1945.0,
-        "Runtime": "68 minutes"
-    },
-    {
-        "Title": "I Accuse My Parents",
-        "Link": "https://www.youtube.com/watch?v=x-itMUUqdFI&ab_channel=TheFilmDetective",
-        "Year": 1944.0,
-        "Runtime": "68 minutes"
-    },
-    {
-        "Title": "The Man Who Wouldn't Die",
-        "Link": "https://www.youtube.com/watch?v=9THX4bCm5a0&ab_channel=NostalgicArtStudio",
-        "Year": 1942.0,
-        "Runtime": "65 minutes"
-    },
-    {
-        "Title": "Hell's Angels",
-        "Link": "https://www.youtube.com/watch?v=f485-FoJ428&ab_channel=THETECHNOSAURUS",
-        "Year": 1930.0,
-        "Runtime": "127 minutes"
-    },
-    {
-        "Title": "Earth",
-        "Link": "https://www.youtube.com/watch?v=A-E57eyjoao&ab_channel=AllsovietmoviesonRVISION",
-        "Year": 1930.0,
-        "Runtime": "75 minutes"
-    },
-    {
-        "Title": "City Lights",
-        "Link": "https://www.youtube.com/watch?v=TkF1we_DeCQ&ab_channel=Dom%C3%ADnioP%C3%BAblico",
-        "Year": 1931.0,
-        "Runtime": "87 minutes"
-    },
-    {
-        "Title": "Bästa Barn",
-        "Link": "https://www.youtube.com/watch?v=QPVLTubt6wY&ab_channel=ScottLordOnScandinavianSilentFilm",
-        "Year": 1918.0,
-        "Runtime": "95 minutes"
-    },
-    {
-        "Title": "Herr Arnes Pengar",
-        "Link": "https://www.youtube.com/watch?v=0XHu2RWIR7c&ab_channel=Films",
-        "Year": 1919.0,
-        "Runtime": "122 minutes"
-    },
-	 {
-        "Title": "The Cabinet of Dr. Caligari",
-        "Link": "https://www.youtube.com/watch?v=WmlaUHqQNao&list=PL7fyCZztKfrLh2r2hIGfD442PWCopGzmN&ab_channel=GabinetedeFreaks",
-        "Year": 1920.0,
-        "Runtime": "76 minutes"
-    },
-    {
-        "Title": "Camille",
-        "Link": "https://www.youtube.com/watch?v=ZUNfYlmBn60&ab_channel=ClassicMoviesChannel",
-        "Year": 1921.0,
-        "Runtime": "69 minutes"
-    },
-    {
-        "Title": "Nosferatu",
-        "Link": "https://www.youtube.com/watch?v=dCT1YUtNOA8&ab_channel=BestClassics",
-        "Year": 1922.0,
-        "Runtime": "94 minutes"
-    },
-    {
-        "Title": "Schatten - Eine nächtliche Halluzination",
-        "Link": "https://www.youtube.com/watch?v=ki3GrUkL26g&list=PLW_OVmQBL-kIlFtGewa-6rqFUPT1lyrmt&index=11&ab_channel=FilmsbytheYear",
-        "Year": 1923.0,
-        "Runtime": "90 minutes"
-    },
-    {
-        "Title": "Sherlock Jr",
-        "Link": "https://www.youtube.com/watch?v=fZuqWxITq38&ab_channel=Laurel%26Hardy",
-        "Year": 1924.0,
-        "Runtime": "45 minutes"
-    },
-    {
-        "Title": "Gold Rush",
-        "Link": "https://www.youtube.com/watch?v=nq_frZc-NxE&ab_channel=CINEMUDOLANDIA",
-        "Year": 1925.0,
-        "Runtime": "95 minutes"
-    },
-    {
-        "Title": "Faust",
-        "Link": "https://www.youtube.com/watch?v=b4zuBC2XRA0&ab_channel=moonflix",
-        "Year": 1926.0,
-        "Runtime": "107 minutes"
-    },
-    {
-        "Title": "Metropolis",
-        "Link": "https://www.youtube.com/watch?v=W_4no842TX8&ab_channel=AllTimeClassics",
-        "Year": 1927.0,
-        "Runtime": "153 minutes"
-    },
-    {
-        "Title": "The Docks of New York",
-        "Link": "https://www.youtube.com/watch?v=7_A6T2uFKTY&ab_channel=OldTimes",
-        "Year": 1928.0,
-        "Runtime": "76 minutes"
-    },
-    {
-        "Title": "Applause",
-        "Link": "https://youtube.com/watch?v=tNzteHAjihc&ab_channel=BethanyJacobson",
-        "Year": 1929.0,
-        "Runtime": "80 minutes"
-    },
-	{
-        "Title": "The Ghoul",
-        "Link": "https://www.youtube.com/watch?v=Ykor2AjjIzU&ab_channel=SafehouseHorror",
-        "Year": 1933.0,
-        "Runtime": "77 minutes"
-    },
-    {
-        "Title": "'Neath The Arizona Skies",
-        "Link": "https://www.youtube.com/watch?v=gxcCeITSNwk&ab_channel=AmericanPublicDomainCollection",
-        "Year": 1934.0,
-        "Runtime": "52 minutes"
-    },
-    {
-        "Title": "Aerograd",
-        "Link": "https://www.youtube.com/watch?v=9RzVibSqI5U&ab_channel=AllsovietmoviesonRVISION",
-        "Year": 1935.0,
-        "Runtime": "82 minutes"
-    },
-    {
-        "Title": "My Man Godfrey",
-        "Link": "",
-        "Year": 1936.0,
-        "Runtime": "94 minutes"
-    },
-    {
-        "Title": "Heidi",
-        "Link": "https://www.youtube.com/watch?v=hcMSyLFAOr8&ab_channel=CultCinemaClassics",
-        "Year": 1937.0,
-        "Runtime": "88 minutes"
-    },
-    {
-        "Title": "Gangs of New York",
-        "Link": "https://www.youtube.com/watch?v=A_5J6hg79is&ab_channel=TheFederalFile",
-        "Year": 1938.0,
-        "Runtime": "67 minutes"
-    },
-    {
-        "Title": "La règle du jeu",
-        "Link": "https://www.youtube.com/watch?v=xL83GHBanCw&ab_channel=TravisPictures",
-        "Year": 1939.0,
-        "Runtime": "110 minutes"
     }
 ];
 
+ function processMovieData() {
+    let minRuntime = Infinity, maxRuntime = 0;
+    movies.forEach(movie => {
+        const runtime = parseInt(movie.Runtime.split(' ')[0]);
+        minRuntime = Math.min(minRuntime, runtime);
+        maxRuntime = Math.max(maxRuntime, runtime);
+    });
+
+    // Update the runtime input field's min and max values
+    const runtimeInput = document.getElementById('runtimeInput');
+    runtimeInput.min = minRuntime;
+    runtimeInput.max = maxRuntime;
+
+    const runtimeSlider = document.getElementById('runtimeSlider');
+    runtimeSlider.min = minRuntime;
+    runtimeSlider.max = maxRuntime;
+    runtimeSlider.value = minRuntime; // or any default value within the range
+
+    // Update runtime range display
+    const runtimeRange = document.getElementById('runtimeRange');
+    runtimeRange.textContent = `(${minRuntime}-${maxRuntime}m)`
+}
+    // Initialize the movie data processing
+    processMovieData();
 
 
 function find90MinuteMovies() {
-    const maximumRuntime = 97; // Maximum runtime of 97 minutes or less
+  const maximumRuntime = 97; // Maximum runtime of 97 minutes or less
 
-    const shortMovies = movies.filter(movie => {
-        // Check if the Runtime property is defined and not null, and the year is after 1945
-        if (movie.Runtime && movie.Year > 1945) {
-            const runtime = parseInt(movie.Runtime.split(' ')[0]);
-            return runtime <= maximumRuntime;
-        }
-        return false; // If Runtime is undefined, null, or year is 1945 or before, exclude this movie
-    });
+  const shortMovies = movies.filter(movie => {
+    const runtime = parseInt(movie.Runtime.split(' ')[0]);
+    return runtime <= maximumRuntime;
+  });
 
-    const movieElement = document.getElementById('movieLink');
-    movieElement.innerHTML = ''; // Clear previous results
+  const movieElement = document.getElementById('movieLink');
+  movieElement.innerHTML = ''; // Clear previous results
 
-    if (shortMovies.length > 0) {
-        const selectedMovie = shortMovies[Math.floor(Math.random() * shortMovies.length)];
-        searchTmdbForMovieId(selectedMovie.Title, selectedMovie.Year, (movieId) => {
-            fetchTmdbMovieDetails(movieId, (imageUrl) => {
-                const movieElement = createMovieElement(selectedMovie, imageUrl);
-                document.getElementById('movieLink').appendChild(movieElement);
-                getMovieCredits(movieId, (credits) => {
-                    displayMovieCredits(credits);
-                });
-            });
+  if (shortMovies.length > 0) {
+    const selectedMovie = shortMovies[Math.floor(Math.random() * shortMovies.length)];
+    searchTmdbForMovieId(selectedMovie.Title, selectedMovie.Year, (movieId) => {
+      fetchTmdbMovieDetails(movieId, (imageUrl) => {
+        const movieElement = createMovieElement(selectedMovie, imageUrl);
+        document.getElementById('movieLink').appendChild(movieElement);
+        getMovieCredits(movieId, (credits) => {
+          displayMovieCredits(credits);
         });
-    } else {
-        movieElement.textContent = 'No short movie found.';
-    }
+      });
+    });
+  } else {
+    movieElement.textContent = 'No short movie found.';
+  }
 }
 
 	// Assuming you have a div with id="movieCredits" in your HTML to display the credits
@@ -973,11 +811,10 @@ function createMovieElement(selectedMovie, posterPath) {
   // Combine title, link, runtime, and password into one row
   const movieInfoHTML = `
     <p>
-        ${selectedMovie.Title}    
-      
-        | Runtime: ${selectedMovie.Runtime}  | 
-<a href="${selectedMovie.Link}" target="_blank">   Link</a>
-      |  Password: elias 
+      Title: ${selectedMovie.Title} 
+      <a href="${selectedMovie.Link}" target="_blank">| Download |</a>
+       Runtime: ${selectedMovie.Runtime}
+      |  Password: elias | 
     </p>`;
 
   // Create the movie element and insert the movieInfoHTML
@@ -992,8 +829,37 @@ function createMovieElement(selectedMovie, posterPath) {
   // Return the complete movie element
   return movieElement;
 }
-	
 
+	  function findMovieByRuntime() {
+            const runtimeInput = document.getElementById('runtimeInput').value;
+            const runtime = parseInt(runtimeInput); // Convert input to an integer
+
+            // Filter movies by runtime
+            const filteredMovies = movies.filter(movie => {
+                const movieRuntime = parseInt(movie.Runtime.split(' ')[0]);
+                return movieRuntime === runtime;
+            });
+
+            // Display results
+            const resultsElement = document.getElementById('runtimeResults');
+            resultsElement.innerHTML = ''; // Clear previous results
+
+            if (filteredMovies.length > 0) {
+                filteredMovies.forEach(movie => {
+                    searchTmdbForMovieId(movie.Title, movie.Year, (movieId) => {
+                        fetchTmdbMovieDetails(movieId, (imageUrl) => {
+                            const movieElement = createMovieElement(movie, imageUrl);
+                            resultsElement.appendChild(movieElement);
+                            getMovieCredits(movieId, (credits) => {
+                                displayMovieCredits(credits);
+                            });
+                        });
+                    });
+                });
+            } else {
+                resultsElement.textContent = 'No movie found for that runtime.';
+            }
+        }
 // Function to search TMDB for the movie ID based on title and year
 function searchTmdbForMovieId(title, year, callback) {
   const apiKey = '400455f56b3e2b3e009287db19785e09';
