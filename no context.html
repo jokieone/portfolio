@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>no context quote</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        #quotation {
+            font-family: Arial, sans-serif;
+            font-size: 100px;
+            line-height: 1.4;
+            color: #1512F9;
+      
+            height: calc(100% - 50px);
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="quotation"></div>
+
+    <script>
+        function fetchAndDisplayQuotation() {
+            fetch('texter/merged.txt')
+                .then(response => response.text())
+                .then(text => {
+                    const quotations = text.split(/\n\s*\n/);
+                    const randomQuotation = quotations[Math.floor(Math.random() * quotations.length)];
+                    document.getElementById('quotation').textContent = randomQuotation;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Fetch and display a new quotation immediately, then every 10 seconds
+        fetchAndDisplayQuotation();
+        setInterval(fetchAndDisplayQuotation, 10000); // 10000 milliseconds = 10 seconds
+    </script>
+</body>
+</html>
